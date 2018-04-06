@@ -7,6 +7,9 @@ import { Observable } from 'rxjs/Observable';
 @Injectable()
 export class APIService {
 
+    static isChecking: boolean;
+    static current_path = "/main";
+    
     constructor(private http: Http, private router: Router) { }
 
     public get(url, params?, jwt = true) {

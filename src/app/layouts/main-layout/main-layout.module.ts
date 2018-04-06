@@ -2,12 +2,15 @@ import { NgModule } from '@angular/core';
 
 import { MainLayoutComponent } from './main-layout.component';
 import { MainLayoutRoutingModule } from './main-layout-routing.module'
+import { MainLayoutGuard } from './main-layout.guard';
 @NgModule({
     imports: [
-
+        MainLayoutRoutingModule
     ],
     exports: [],
     declarations: [MainLayoutComponent],
-    providers: [],
+    providers: [
+        MainLayoutGuard
+    ],
 })
 export class MainLayoutModule { }

@@ -4,5 +4,23 @@
 // The list of which env maps to which file can be found in `.angular-cli.json`.
 
 export const environment = {
-  production: false
-};
+  production: false,
+  endPoint: "https://api.howizbiz.com/api",
+  domain: "https://howizbiz.com/",
+  avatarUrl: "https://api.howizbiz.com/avatars/",
+
+  apiUrls: {
+      'loginUrl': "/login",
+  
+      'userApi' : '/users'
+  },
+
+  getUrl: function (apiName: string) {
+
+      return this.endPoint + this.apiUrls[apiName];
+  },
+
+  localStorageVariablesName: {
+
+  }
+}
