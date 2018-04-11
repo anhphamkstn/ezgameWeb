@@ -5,14 +5,13 @@
 
 export const environment = {
   production: false,
-  endPoint: "https://api.howizbiz.com/api",
-  domain: "https://howizbiz.com/",
-  avatarUrl: "https://api.howizbiz.com/avatars/",
+  endPoint: "http://ezgamestore.com/api/",
+  domain: "http://ezgamestore.com/",
 
   apiUrls: {
       'loginUrl': "/login",
   
-      'userApi' : '/users'
+      'getProduct' : '/get-game'
   },
 
   getUrl: function (apiName: string) {

@@ -10,6 +10,11 @@ import { ProductComponent } from './pages/product/product.component';
 import { CatalogueComponent } from './pages/catalogue/catalogue.component';
 import { ProfileComponent } from './pages/profile/profile.component';
 import { CheckOutComponent } from './pages/check-out/check-out.component';
+import { AppStateService } from './services/app-state.service';
+import { APIService } from './auth/APIService';
+import { HttpModule } from '@angular/http';
+import { MessageService } from './services/message-service/message.service';
+
 
 @NgModule({
   declarations: [
@@ -23,9 +28,13 @@ import { CheckOutComponent } from './pages/check-out/check-out.component';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    MainLayoutModule
+    MainLayoutModule,
+    HttpModule
   ],
   providers: [
+    AppStateService,
+    APIService,
+    MessageService
     
   ],
   bootstrap: [AppComponent]
