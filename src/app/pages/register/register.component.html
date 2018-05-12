@@ -1,0 +1,236 @@
+<div class="box-body" style="height:100vh; background-color: #fff">
+  <div class="">
+    <div class="logo-lg" style="text-align:center">
+      <img src="assets/default/images/logo.png" alt="SalesTrekk" style="width:194px">
+    </div>
+    <h2 id="welcome-text" class="text-center">Welcome to
+      <span style="color:royalblue; font-size:xx-large">Sales</span>
+      <span style="color:darkgray; font-size:xx-large">Trekk</span>
+      . Just few more steps!</h2>
+  </div>
+  <div id="body-reg" class="container box-body" style="min-height:80vh">
+    <div id="progress-bar" class="stepwizard" style="display:none;">
+      <div class="row bs-wizard disabled" style="border-bottom:0;">
+        <div id="complete1" class="col-xs-4 col-xs-offset-2 bs-wizard-step complete">
+          <div class="text-center bs-wizard-stepnum">Account</div>
+          <div class="progress">
+            <div class="progress-bar"></div>
+          </div>
+          <a class="bs-wizard-dot"></a>
+          <div class="bs-wizard-info text-center">Create your account</div>
+        </div>
+        <div id="complete5" class="col-xs-4 bs-wizard-step">
+          <div class="text-center bs-wizard-stepnum">Complete</div>
+          <div class="progress">
+            <div class="progress-bar"></div>
+          </div>
+          <a class="bs-wizard-dot"></a>
+          <div class="bs-wizard-info text-center">Complete registration</div>
+        </div>
+      </div>
+    </div>
+    <div id="main-form" class="box" style="display:none;border:none;box-shadow:none;">
+      <form ngNativeValidate role="form">
+        <div *ngIf="currentStep == 1" class="row setup-content" id="step-1">
+          <div class="col-xs-12">
+            <h3 class="lead text-center">Create new account</h3>
+            <div class="col-md-12 text-center">
+              <div class="col-md-6 col-md-offset-3">
+                <form ngNativeValidate id="sigup-form" (submit)="onCreateNewAccount($event)">
+                  <div class="form-group has-feedback">
+                    <input id="full-name" type="text" #input class="form-control" placeholder="Full name" name="company-name" autocomplete="off"
+                      required>
+                    <span class="glyphicon glyphicon-user form-control-feedback"></span>
+                  </div>
+                  <div class="form-group has-feedback">
+                    <input id="signup-email" type="email" class="form-control" placeholder="Email" name="email" autocomplete="off" autocomplete="off"
+                      autocorrect="off" autocapitalize="off" spellcheck="false">
+                    <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
+                  </div>
+                  <div class="form-group has-feedback">
+                    <input id="phone-1" type="text" class="form-control" placeholder="Phone number" name="phone" autocomplete="off" autocomplete="off"
+                      autocorrect="off" autocapitalize="off" spellcheck="false" required>
+                    <span class="glyphicon glyphicon-phone form-control-feedback"></span>
+                  </div>
+                  <div class="form-group has-feedback">
+                    <input id="signup-company" type="text" class="form-control" placeholder="Company" name="company" autocomplete="off" autocomplete="off"
+                      autocorrect="off" autocapitalize="off" spellcheck="false">
+                    <span class="fa fa-building form-control-feedback"></span>
+                  </div>
+                  <div id="psw" class="form-group has-feedback">
+                    <input id="signup-password" type="password" class="form-control" placeholder="Password" name="password" required>
+                    <span class="glyphicon glyphicon-lock form-control-feedback"></span>
+                  </div>
+                  <div id="retype-psw" class="form-group has-feedback">
+                    <input id="signup-retype-password" type="password" class="form-control" placeholder="Retype password" name="password" required>
+                    <span class="glyphicon glyphicon-log-in form-control-feedback"></span>
+                  </div>
+                  <div>
+                    <span id="signUpMessage" class="help-block text-center"></span>
+                  </div>
+                  <div id="accountBtnGroup" class="text-center">
+
+                    <div class="col-md-12">
+                      <button type="submit" class="btn btn-primary"> Create my account</button>
+                    </div>
+                  </div>
+                </form>
+              </div>
+              <div class="col-md-6">
+
+              </div>
+            </div>
+          </div>
+        </div>
+        <div *ngIf="currentStep == 10" class="row setup-content" id="step-2">
+          <div class="col-md-12">
+            <div id="question" class="text-center" style="padding-top:100px;padding-bottom:100px">
+              <h1> Is your company created on SalesTrekk platform?</h1>
+              <div class="col-xs-12">
+                <div class="col-xs-6">
+                  <button type="button" (click)="iWantToSearch()" class="btn btn-lg bg-olive btn-flat margin">Yes, let me join in</button>
+                </div>
+                <div class="col-xs-6">
+                  <button type="button" (click)="iWantToCreate()" class="btn btn-lg bg-olive btn-flat margin">No, i will create it now</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div *ngIf="currentStep == 3" class="row setup-content" id="step-3">
+
+          <div id="createCompany" class="col-md-12">
+            <div class="col-md-6 col-md-offset-3 text-center">
+              <h3 class="lead text-center">Create your company</h3>
+              <form ngNativeValidate id="company-form" (submit)="onSubmitNewCompany($event)">
+                <div class="form-group has-feedback">
+                  <input id="company-name" type="text" #input class="form-control" placeholder="Company name" name="company-name" autocomplete="off"
+                    required>
+                  <span class="fa fa-building form-control-feedback"></span>
+                </div>
+
+                <div class="form-group has-feedback">
+                  <input id="new-company-code" type="text" class="form-control" placeholder="Company code" name="code" autocomplete="off" [formControl]="newCompanyCodeControl"
+                    required>
+                  <span class="fa fa-barcode form-control-feedback"></span>
+                </div>
+                <small class="help-block">
+                  <i>{{verifyCompanyCodeMessage}}</i>
+                </small>
+                <div class="form-group has-feedback">
+                  <input id="company-email" type="email" class="form-control" placeholder="Email" name="email" autocomplete="off">
+                  <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
+                </div>
+                <div class="form-group has-feedback">
+                  <input id="company-web" type="text" class="form-control" placeholder="Website" name="web-site" autocomplete="off">
+                  <span class="fa fa-chrome form-control-feedback"></span>
+                </div>
+                <div class="form-group has-feedback">
+                  <input id="company-phone" type="text" class="form-control" placeholder="Phone" name="phone" autocomplete="off">
+                  <span class="fa fa-phone form-control-feedback"></span>
+                </div>
+                <div class="form-group has-feedback">
+                  <input id="fax" type="text" class="form-control" placeholder="Fax" name="fax" autocomplete="off">
+                  <span class="fa fa-fax form-control-feedback"></span>
+                </div>
+                <div id="submitNewComp" class="text-center">
+                  <button type="submit" class="btn btn-primary"> Create my company</button>
+                </div>
+              </form>
+            </div>
+            <div class="col-md-6">
+
+            </div>
+          </div>
+        </div>
+        <div *ngIf="currentStep == 4" class="row setup-content" id="step-4">
+          <div class="col-xs-12">
+            <h3 class="lead text-center">Select your package</h3>
+            <div class="row-fluid pricing-table pricing-three-column">
+              <div class="col-md-4">
+                <div class="plan">
+                  <div class="plan-name" [ngClass]="{'plan-selected':(selectedPackage==1)}">
+                    <h2>BASIC</h2>
+                    <span>Free</span>
+                  </div>
+                  <ul class="padding-0px">
+                    <li class="plan-feature">1 GB RAM</li>
+                    <li class="plan-feature">25 GB HD</li>
+                    <li class="plan-feature">2 GHz Speed</li>
+                    <li class="plan-feature">24hrs support</li>
+                    <li class="plan-feature">24hrs support</li>
+                    <li *ngIf="selectedPackage == 1" class="plan-feature">
+                      <i class="fa fa-check text-green text-center" style="font-size:x-large;"></i>
+                    </li>
+                    <li *ngIf="selectedPackage != 1" class="plan-feature">
+                      <a (click)="selectPackage(1)" class="btn btn-warning btn-plan-select">Select</a>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+              <div class="col-md-4 ">
+                <div class="plan">
+                  <div class="plan-name" [ngClass]="{'plan-selected':(selectedPackage==2)}">
+                    <h2>BUSINESS</h2>
+                    <span>$15</span>
+                  </div>
+                  <ul class="padding-0px">
+                    <li class="plan-feature">1 GB RAM</li>
+                    <li class="plan-feature">25 GB HD</li>
+                    <li class="plan-feature">2 GHz Speed</li>
+                    <li class="plan-feature">24hrs support</li>
+                    <li class="plan-feature">24hrs support</li>
+                    <li *ngIf="selectedPackage == 2" class="plan-feature">
+                      <i class="fa fa-check text-green text-center" style="font-size:x-large;"></i>
+                    </li>
+                    <li *ngIf="selectedPackage != 2" class="plan-feature">
+                      <a (click)="selectPackage(2)" class="btn btn-warning btn-plan-select">Select</a>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+              <div class="col-md-4">
+                <div class="plan">
+                  <div id="plan3" class="plan-name" [ngClass]="{'plan-selected':(selectedPackage==3)}">
+                    <h2>ENTERPRISE</h2>
+                    <span>$18</span>
+                  </div>
+                  <ul class="padding-0px">
+                    <li class="plan-feature">1 GB RAM</li>
+                    <li class="plan-feature">25 GB HD</li>
+                    <li class="plan-feature">2 GHz Speed</li>
+                    <li class="plan-feature">24hrs support</li>
+                    <li class="plan-feature">24hrs support</li>
+                    <li *ngIf="selectedPackage == 3" class="plan-feature">
+                      <i class="fa fa-check text-green text-center" style="font-size:x-large;"></i>
+                    </li>
+                    <li *ngIf="selectedPackage != 3" class="plan-feature">
+                      <a (click)="selectPackage(3)" class="btn btn-warning btn-plan-select">Select</a>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="row setup-content" id="step-5">
+          <div class="col-md-12">
+            <h2 class="text-green text-center">Almost done! We have sent a verification to your email. Please check it to complete your registration</h2>
+
+          </div>
+        </div>
+      </form>
+      <div class="overlay" style="margin-top:0px" *ngIf="isLoading">
+        <i class="fa">
+          <loading></loading>
+        </i>
+      </div>
+    </div>
+  </div>
+  <div class="box-footer text-center" id="footer" style="display:none;max-height:10vh">
+    <h3 class="pull-left">&#160;&#160;{{stepMessage}}</h3>
+    <button id="nextBtn" *ngIf="currentStep != 2 && currentStep != 4" class="btn btn-lg btn-primary pull-right" type="button"
+      (click)="nextStep()" style="display:none;">Next</button>
+    <button id="goToDashboard" class="btn btn-success nextBtn btn-lg pull-right" type="button" (click)="skip()">Go to login</button>
+  </div>
+</div>

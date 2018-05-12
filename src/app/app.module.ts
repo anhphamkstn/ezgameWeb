@@ -1,7 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import { NgModule  } from '@angular/core';
 
-
+import {  FormsModule } from '@angular/forms'
 import { AppComponent } from './app.component';
 import {AppRoutingModule} from "./app-routing.module"
 import { MainLayoutModule } from './layouts/main-layout/main-layout.module';
@@ -15,7 +15,8 @@ import { APIService } from './auth/APIService';
 import { HttpModule } from '@angular/http';
 import { MessageService } from './services/message-service/message.service';
 import { MoneyPipe } from './pipes/money.pipe';
-
+import { LoginComponent } from './pages/login/login.component';
+import { SharedModule } from './shared/shared.module';
 
 @NgModule({
   declarations: [
@@ -25,13 +26,17 @@ import { MoneyPipe } from './pipes/money.pipe';
     CatalogueComponent,
     ProfileComponent,
     CheckOutComponent,
-    MoneyPipe
+    MoneyPipe,
+    LoginComponent,
+    RegisterComponent
   ],
   imports: [
+    SharedModule,
     BrowserModule,
     AppRoutingModule,
     MainLayoutModule,
-    HttpModule
+    HttpModule,
+    FormsModule
   ],
   providers: [
     AppStateService,
