@@ -14,6 +14,7 @@ import { AppStateService } from './services/app-state.service';
 import { APIService } from './auth/APIService';
 import { HttpModule } from '@angular/http';
 import { MessageService } from './services/message-service/message.service';
+import { MoneyPipe } from './pipes/money.pipe';
 
 
 @NgModule({
@@ -23,7 +24,8 @@ import { MessageService } from './services/message-service/message.service';
     ProductComponent,
     CatalogueComponent,
     ProfileComponent,
-    CheckOutComponent
+    CheckOutComponent,
+    MoneyPipe
   ],
   imports: [
     BrowserModule,

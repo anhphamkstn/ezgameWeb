@@ -609,10 +609,18 @@ a:focus{
 	top: 0;
 	left: 0;
 	line-height: 40px;
-	font-size: 16px;
+	font-size: 22px;
 	font-weight: bold;
 	padding: 0 5px;
+	text-align: center;
+	width: 45px;
 }
+
+.price-sell .discount i{
+	font-size: 20px;
+}
+
+
 .product-hot .price-sell .price{
 	padding: 0 35px 0 45px;
 }

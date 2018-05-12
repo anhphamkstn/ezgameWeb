@@ -54,7 +54,7 @@ export class APIService {
             });
     }
 
-    public put(url, body, params?, jwt = true) {
+    public put(url, body?, params?, jwt = true) {
         if (!params)
             params = new URLSearchParams();
 

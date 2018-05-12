@@ -15,14 +15,14 @@ export class ProductComponent implements OnInit {
   public productID
   constructor(
     public appState: AppStateService,
-        public api: APIService,
-        public router: Router,
-        public route: ActivatedRoute,
-        public messageService: MessageService,
-        
+    public api: APIService,
+    public router: Router,
+    public route: ActivatedRoute,
+    public messageService: MessageService,
+
   ) {
     this.productID = this.route.params["value"].id
-   }
+  }
 
   ngOnInit() {
     this.getProductInfo()
@@ -30,15 +30,15 @@ export class ProductComponent implements OnInit {
 
   getProductInfo() {
     this.api.get(environment.getUrl('getProduct') + "/" + this.productID)
-                .map(res => res.json())
-                .subscribe(
-                res => {
-                    console.log(res)
-                },
-                err => {
-                    this.messageService.createErrorMessage("", "Can't get product info");
-                }
-                )
+      .map(res => res.json())
+      .subscribe(
+        res => {
+          console.log(res)
+        },
+        err => {
+          this.messageService.createErrorMessage("", "Can't get product info");
+        }
+      )
 
   }
 

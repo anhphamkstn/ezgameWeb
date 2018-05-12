@@ -6,12 +6,15 @@
 export const environment = {
   production: false,
   endPoint: "http://ezgamestore.com/api/",
-  domain: "http://ezgamestore.com/",
-
+  domain: "http://ezgamestore.com",
+  imageUrl: "http://ezgamestore.com/upload/",
   apiUrls: {
-      'loginUrl': "/login",
+      'loginUrl': "login",
   
-      'getProduct' : '/get-game'
+      'getProduct' : 'get-game/PUBG-05',
+
+      'getConfig' : 'config'
+
   },
 
   getUrl: function (apiName: string) {
