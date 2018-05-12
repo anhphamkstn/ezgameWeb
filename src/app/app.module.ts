@@ -27,8 +27,7 @@ import { SharedModule } from './shared/shared.module';
     ProfileComponent,
     CheckOutComponent,
     MoneyPipe,
-    LoginComponent,
-    RegisterComponent
+    LoginComponent
   ],
   imports: [
     SharedModule,
