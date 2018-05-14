@@ -1,8 +1,8 @@
-<div style="background: #4a4a4a;" class="col-md-12">
+<div #myView  style="background: #4a4a4a;" class="col-md-12">
     <div class="login-box">
         <div class="login-box-body-s">
             <form ngNativeValidate (submit)="login($event)">
-                <p class="login-box-msg" style="color:white" i18n>Sign in Ezgame</p>
+                <p class="login-box-msg" style="color:white" i18n>Đăng nhập Ezgame</p>
                 <div class="form-group">
                     <span class="text-primary" style="color: beige">{{errorMessage}}</span>
                 </div>
@@ -18,8 +18,8 @@
                 </div>
                 <div class="form-group">
                     <br>
-                    <span style="color:#fff" i18n>Don't have an account ? </span>
-                    <a class="cursor" style="text-decoration: underline; color: beige" (click)="onSignUpClick($event)" i18n>Create one</a>
+                    <span style="color:#fff" i18n>Bạn chưa có tài khoản ? </span>
+                    <a class="cursor" style="text-decoration: underline; color: beige" (click)="onSignUpClick($event)" i18n>Tạo mới</a>
                 </div>
                 <div class="overlay text-center logging" style="display:none;">
                     <i class="fa">
@@ -29,11 +29,10 @@
                 <div class="box-login logging">
                     <div>
                         <div class="form-group">
-                            <button type="submit" class="btn btn-primary btn-block" style="background-color: #4285f4;" i18n>Sign in
+                            <button type="submit" class="btn btn-primary btn-block" style="background-color: #4285f4;" i18n>Đăng nhập
                             </button>
                         </div>
                     </div>
-
                 </div>
                 <br>
                 <br>

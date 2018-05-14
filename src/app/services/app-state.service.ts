@@ -2,6 +2,7 @@ import { Injectable, EventEmitter } from '@angular/core';
 import { APIService } from '../auth/APIService';
 import { environment } from '../../environments/environment';
 import { Router,Event, NavigationEnd } from '@angular/router';
+import { User } from '../models/user.model';
 
 
 declare var jQuery: any; 
@@ -11,7 +12,8 @@ declare var Sbi: any;
 @Injectable()
 export class AppStateService {
     
-
+    public user_profile = new User();
+    public avatar_url: string;
     previousUrl = []
 
     constructor(
@@ -29,5 +31,30 @@ export class AppStateService {
                 }
             }
         });
+    }
+
+    public getAvatar(profile) {
+        var endPoint = environment.endPoint
+        if (profile.avatar && profile.avatar != '-') {
+            return endPoint + profile.avatar
+        }
+        //return avatarDefautlUrl;
+        return "";
+    }
+
+    public getUserProfile() {
+        this.api.get(environment.getUrl('getProfileUrl')).map(res => res.json()).subscribe(
+            response => {
+                this.user_profile = response;
+                this.avatar_url = this.getAvatar(this.user_profile);
+            },
+            error => {
+                if (error.status == 500) {
+                    this.getUserProfile()
+                }
+            },
+            () => {
+            }
+        );
     }
 }

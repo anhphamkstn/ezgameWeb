@@ -1,7 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule  } from '@angular/core';
-
-import {  FormsModule } from '@angular/forms'
 import { AppComponent } from './app.component';
 import {AppRoutingModule} from "./app-routing.module"
 import { MainLayoutModule } from './layouts/main-layout/main-layout.module';
@@ -17,31 +15,27 @@ import { MessageService } from './services/message-service/message.service';
 import { MoneyPipe } from './pipes/money.pipe';
 import { LoginComponent } from './pages/login/login.component';
 import { SharedModule } from './shared/shared.module';
+import { RegisterComponent } from './pages/register/register.component';
+import { Auth } from './auth/auth';
 
 @NgModule({
   declarations: [
-    AppComponent,
-    HomeComponent,
-    ProductComponent,
-    CatalogueComponent,
-    ProfileComponent,
-    CheckOutComponent,
-    MoneyPipe,
-    LoginComponent
+    AppComponent
   ],
   imports: [
     SharedModule,
     BrowserModule,
     AppRoutingModule,
     MainLayoutModule,
-    HttpModule,
-    FormsModule
+    HttpModule
+    
   ],
   providers: [
     AppStateService,
     APIService,
-    MessageService
-    
+    MessageService,
+    Auth
+   
   ],
   bootstrap: [AppComponent]
 })

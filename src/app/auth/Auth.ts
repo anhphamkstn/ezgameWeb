@@ -57,8 +57,10 @@ export class Auth {
 
     check_token_expired(jwt: any) {
         var status = false
+       
         jQuery.ajax({
             url: environment.getUrl('checkToken'),
+            data : {},
             dataType: 'json',
             headers: {
                 'Authorization': 'Bearer ' + jwt
@@ -72,6 +74,8 @@ export class Auth {
             cache: false,
             async: false
         })
+        return status
+        
         return status
     }
 }

@@ -3,7 +3,7 @@ import { ProfileComponent } from "./profile.component";
 
 
 
-export const ProductRoutes: Routes = [
+export const ProfileRoutes: Routes = [
     {
       path: 'profile',
       component: ProfileComponent,

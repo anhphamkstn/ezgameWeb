@@ -5,35 +5,55 @@
         <div class="col-md-3 col-sm-6">
           <div class="avatar-wrap">
             <div class="avatar">
-              <img src="default/images/default-avatar.jpg">
+              <img src="assets/default/images/icon-user.png">
               <div class="change-avatar">
-                <a href="#" class="change-click">thay đổi avatar</a>
+                <!-- <a href="#" class="change-click">thay đổi avatar</a> -->
               </div>
             </div>
           </div>
-          <a class="btn btn-connect btn-facebook">kết nối tới facebook</a>
-          <a class="btn btn-connect btn-steam">kết nối tới steam</a>
+          <!-- <a class="btn btn-connect btn-facebook">kết nối tới facebook</a>
+          <a class="btn btn-connect btn-steam">kết nối tới steam</a> -->
         </div>
         <div class="col-md-9 col-sm-6">
-          <h2 class="name-user">tên người dùng</h2>
+          <h2 class="name-user">{{profileNewInfo.name ? profileNewInfo.name : "Tên người dùng" }}</h2>
+
           <div class="user-info">
-            <div class="row">
-              <div class="col-md-3"><span class="text">Địa chỉ email:</span></div>
-              <div class="col-md-9"><input type="text" class="form-control"></div>
-            </div>
-            <div class="row">
-              <div class="col-md-3"><span class="text">Link Steam:</span></div>
-              <div class="col-md-9"><input type="text" class="form-control"></div>
-            </div>
-            <div class="row">
-              <div class="col-md-3"><span class="text">Số điện thoại:</span></div>
-              <div class="col-md-9"><input type="text" class="form-control"></div>
-            </div>
-            <div class="row">
+            <form ngNativeValidate role="form" id="profileEditForm" [formGroup]="profileEditForm" (submit)="saveUserInfo($event)" autocomplete="off">
+              <div class="row">
+                <div class="col-md-3">
+                  <span class="text">Địa chỉ email:</span>
+                </div>
+                <div class="col-md-9">
+                  <input [(ngModel)]="profileNewInfo.email" type="text" class="form-control">
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-md-3">
+                  <span class="text">Tên người dùng</span>
+                </div>
+                <div class="col-md-9">
+                  <input [(ngModel)]="profileNewInfo.name" type="text" class="form-control">
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-md-3">
+                  <span class="text">Số điện thoại:</span>
+                </div>
+                <div class="col-md-9">
+                  <input [(ngModel)]="profileNewInfo.phone" type="number" class="form-control">
+                </div>
+              </div>
+              <div class="row">
+                <button (click)="saveUserInfo($event)">Lưu thông tin</button>
+              </div>
+            </form>
+
+
+            <!-- <div class="row">
               <div class="col-md-3"><span class="text">Ngày sinh:</span></div>
               <div class="col-md-9"><span class="brithday text"><span>dd</span>/<span>mm</span>/<span>yyyy</span></span></div>
-            </div>
-            <div class="row">
+            </div> -->
+            <!-- <div class="row">
               <div class="col-md-3"><span class="text">Thành phố:</span></div>
               <div class="col-md-9">
                 <select class="form-control">
@@ -42,8 +62,8 @@
                   <option>Cần Thơ</option>
                 </select>
               </div>
-            </div>
-            <div class="row">
+            </div> -->
+            <!-- <div class="row">
               <div class="col-md-3"><span class="text">Code giảm giá:</span></div>
               <div class="col-md-9"><input type="text" class="form-control code-discount" value="ABCD11" readonly></div>
 
@@ -52,18 +72,40 @@
             <div class="get-bonus">
               <a href="#" class="ez-text">Nhận phần thưởng của bạn</a>
               <br>
-            </div>
+            </div> -->
             <div class="change-pass">
               <span class="caret"></span>
               <span class="ez-text">Đổi mật khẩu</span>
             </div>
             <div class="row">
-              <div class="col-md-4"><span class="text">Mật khẩu mới:</span></div>
-              <div class="col-md-8"><input type="text" class="form-control"></div>
+              <div class="col-md-4">
+                <span class="text">Mật khẩu cũ:</span>
+              </div>
+              <div class="col-md-8">
+                <input id="old_password" type="text" class="form-control required" name="old_password" autocomplete="off" style="-webkit-text-security: disc;"
+                  [formControl]="oldPassword">
+              </div>
             </div>
             <div class="row">
-              <div class="col-md-4"><span class="text">Xác nhận mật khẩu mới:</span></div>
-              <div class="col-md-8"><input type="text" class="form-control"></div>
+              <div class="col-md-4">
+                <span class="text">Mật khẩu mới:</span>
+              </div>
+              <div class="col-md-8">
+                <input id="new_password" type="text" class="form-control required" name="new_password" autocomplete="off" style="-webkit-text-security: disc;"
+                  [formControl]="newPassword">
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-4">
+                <span class="text">Xác nhận mật khẩu mới:</span>
+              </div>
+              <div class="col-md-8">
+                <input id="reconf" type="text" class="form-control required" name="reconf" autocomplete="off" style="-webkit-text-security: disc;"
+                  [formControl]="rePassword">
+              </div>
+            </div>
+            <div class="row">
+              <button mat-raised-button color="primary" type="button" (click)="changePassword()" class="btn btn-primary pull-right">Save Password</button>
             </div>
             <a href="#" class="ez-text">Lịch sử mua hàng</a>
           </div>

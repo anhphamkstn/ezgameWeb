@@ -5,6 +5,8 @@ import { MainLayoutComponent } from './main-layout.component';
 import { HomeRoutes } from '../../pages/home/home.route';
 import { ProductRoutes } from '../../pages/product/product.route';
 import { LoginRoutes } from '../../pages/login/login.route';
+import { RegisterRoutes } from '../../pages/register/register.route';
+import { ProfileRoutes } from '../../pages/profile/profile.route';
 
 const routes: Routes = [
   { 
@@ -13,7 +15,9 @@ const routes: Routes = [
     children : [
       ...HomeRoutes,
       ...ProductRoutes,
-      ...LoginRoutes
+      ...ProfileRoutes,
+      ...LoginRoutes,
+      ...RegisterRoutes
     ]
 
    },

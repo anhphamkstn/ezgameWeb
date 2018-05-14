@@ -1,14 +1,26 @@
 import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { LoadingComponent } from './loading/loading.component';
-import { RegisterComponent } from './register/register.component';
-
+import { MoneyPipe } from '../pipes/money.pipe';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
+import { RouterModule } from '@angular/router';
+import { CommonModule } from '@angular/common';
 
 @NgModule({
-    imports: [],
-    exports: [
-        LoadingComponent
+    imports: [
+        RouterModule, CommonModule , FormsModule , ReactiveFormsModule 
     ],
-    declarations: [LoadingComponent, RegisterComponent],
+    exports: [
+        LoadingComponent,
+        MoneyPipe,
+        FormsModule,
+        ReactiveFormsModule,
+        RouterModule, 
+        CommonModule
+    ],
+    declarations: [
+        LoadingComponent,
+        MoneyPipe
+    ],
     providers: [],
     schemas: [ CUSTOM_ELEMENTS_SCHEMA ]
 })

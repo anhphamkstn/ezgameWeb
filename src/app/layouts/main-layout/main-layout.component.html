@@ -28,10 +28,15 @@
                             <input type="text" class="form-control" name="search" id="search" placeholder="TÌM KIẾM (GAME STEAM, BUNDLE, WALLET CODE ...)">
                         </div>
                     </div>
-                    <div class="btn-login-wrap">
-                        <a class="btn-login" onclick="location.replace('/login')">
-                            <span>ĐĂNG NHẬP</span>
-                            <img src="assets/default/images/icon-user.png">
+                    <div style="padding-top: 20px;" class="btn-login-wrap">
+                        <a *ngIf="!authService.loggedIn" class="btn-login cursor" onclick="location.replace('/login')">
+                            <span class="cursor">ĐĂNG NHẬP</span>
+                            <img class="cursor" src="assets/default/images/icon-user.png">
+                        </a>
+                        <a  *ngIf="authService.loggedIn" onclick="location.replace('/profile')" class="user-avatar cursor" >
+                            <img class="cursor" src="assets/default/images/icon-user.png">
+                            <!-- <img *ngIf="appState.avatar_url" [src]="appState.avatar_url" alt="User Image"> -->
+                           <!-- <b style="font-size: 1.5vw">Xin chào {{appState.user_profile.name}}</b>  -->
                         </a>
                     </div>
                     <div class="clearfix"></div>

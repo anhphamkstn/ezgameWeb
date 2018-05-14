@@ -13,7 +13,15 @@ export const environment = {
   
       'getProduct' : 'get-game/PUBG-05',
 
-      'getConfig' : 'config'
+      'getConfig' : 'config',
+
+      'check-email' : 'check-email',
+
+      'register' : 'register',
+
+      'getProfileUrl': 'me',
+
+      'checkToken' : 'check-token'
 
   },
 
