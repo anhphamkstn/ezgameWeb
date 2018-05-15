@@ -46,7 +46,7 @@ export class AppStateService {
         this.api.get(environment.getUrl('getProfileUrl')).map(res => res.json()).subscribe(
             response => {
                 this.user_profile = response;
-                this.avatar_url = this.getAvatar(this.user_profile);
+                //this.avatar_url = this.getAvatar(this.user_profile);
             },
             error => {
                 if (error.status == 500) {

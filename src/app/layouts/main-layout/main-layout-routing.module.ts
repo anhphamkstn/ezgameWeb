@@ -7,6 +7,8 @@ import { ProductRoutes } from '../../pages/product/product.route';
 import { LoginRoutes } from '../../pages/login/login.route';
 import { RegisterRoutes } from '../../pages/register/register.route';
 import { ProfileRoutes } from '../../pages/profile/profile.route';
+import { PurchaseHistoryRoutes } from '../../pages/purchase-history/purchase-history.route';
+import { CheckOutRoutes } from '../../pages/check-out/check-out.route';
 
 const routes: Routes = [
   { 
@@ -17,7 +19,9 @@ const routes: Routes = [
       ...ProductRoutes,
       ...ProfileRoutes,
       ...LoginRoutes,
-      ...RegisterRoutes
+      ...RegisterRoutes,
+      ...PurchaseHistoryRoutes,
+      ...CheckOutRoutes
     ]
 
    },

@@ -1,11 +1,14 @@
 import { Component, OnInit, AfterViewInit } from '@angular/core';
-import { FormControl } from '@angular/forms';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { APIService } from '../../auth/APIService';
 import { MessageService } from '../../services/message-service/message.service';
 import { AppStateService } from '../../services/app-state.service';
 import { User } from '../../models/user.model';
 import { environment } from '../../../environments/environment';
+import { Auth } from '../../auth/auth';
+
+declare var jQuery: any;
 
 @Component({
   selector: 'app-profile',
@@ -28,10 +31,25 @@ export class ProfileComponent implements OnInit, AfterViewInit {
   public rePass: string;
   public sub: any;
 
+  public profileEditForm = new FormGroup({
+    name: new FormControl(this.profileNewInfo.name,Validators.required),
+    email: new FormControl(
+        {
+            value: this.profileNewInfo.email,
+            disabled: true
+        },
+        [Validators.email,Validators.required]
+    ),
+    phone: new FormControl(this.profileNewInfo.phone, [
+        Validators.required
+    ]) 
+});
+
   constructor(
     public route: ActivatedRoute,
     public api: APIService,
     public messageService: MessageService,
+    private authService: Auth,
     public appState: AppStateService) { }
 
   ngOnInit() {
@@ -64,27 +82,34 @@ export class ProfileComponent implements OnInit, AfterViewInit {
   saveUserInfo(event) {
     event.preventDefault();
     if (this.profileEditForm.valid) {
-        if (this.newPasswordMatch) {
-            this.profileNewInfo.password = this.newPass;
-        }
-        let params: URLSearchParams = new URLSearchParams();
-        params.set('type', 'avatar');
-        this.profileNewInfo.setting.timezone = jQuery('#timezone').select2('data')[0].saveText;
-        if (this.avatarFile) {
-            this.api.uploadFile(environment.getUrl('upload'), this.avatarFile, params).map(res => res.json())
-                .subscribe(
-                    response => {
-                        var result = response.result
-                        var controller = this
-                        response.result.path = response.result.media.origin
-                        controller.profileNewInfo.avatar = response.result.path.substring(8);
-                        this.updateProfile()
-                    })
-        } else {
-            this.updateProfile()
-        }
+      this.updateProfile()
     }
-}
+  }
+
+  signOut() {
+    this.authService.logout();
+    location.replace('/');
+  }
+
+  updateProfile() {
+    var params = {
+      name : this.profileNewInfo.name,
+      phone : this.profileNewInfo.phone
+    }
+    this.api.post(environment.getUrl('update-bio'), JSON.stringify(params))
+      .map(res => res)
+      .subscribe(
+        response => {
+          this.appState.getUserProfile();
+          this.messageService.showSuccessMessage("Information saved successfully!");
+          location.replace('/');
+        },
+        error => {
+          this.messageService.showErrorMessage("message", error);
+        },
+        () => { }
+      );
+  }
 
   verifyPassword() {
     if (!this.oldPass || /^\s*$/.test(this.oldPass)) {
@@ -131,7 +156,7 @@ export class ProfileComponent implements OnInit, AfterViewInit {
           this.isUserLoading = false;
         })
     });
-   
+
   }
 
   getUserInfo() {

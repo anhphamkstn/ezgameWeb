@@ -4,6 +4,7 @@ import { APIService } from '../../auth/APIService';
 import { AppStateService } from '../../services/app-state.service';
 import { MessageService } from '../../services/message-service/message.service';
 import { environment } from '../../../environments/environment';
+import { Game } from '../../models/game.model';
 
 @Component({
   selector: 'app-product',
@@ -13,6 +14,7 @@ import { environment } from '../../../environments/environment';
 export class ProductComponent implements OnInit {
 
   public productID
+  public gameInfo = new Game;
   constructor(
     public appState: AppStateService,
     public api: APIService,
@@ -29,11 +31,12 @@ export class ProductComponent implements OnInit {
   }
 
   getProductInfo() {
+    var controller = this
     this.api.get(environment.getUrl('getProduct') + "/" + this.productID)
       .map(res => res.json())
       .subscribe(
         res => {
-          console.log(res)
+          controller.gameInfo = res
         },
         err => {
           this.messageService.createErrorMessage("", "Can't get product info");

@@ -1144,6 +1144,36 @@ a:focus{
     display: inline-block;
 
 }
+
+.check-out a.title{
+	margin: 0 -10px;
+    margin-bottom: 20px;
+    margin-top: 10px;
+    height: 40px;
+    line-height: 40px;
+    background: #ee4c4c;    
+    color: #fff;
+    font-size: 18px;
+    text-transform: uppercase;
+    padding: 0 20px;
+    padding-top: 3px;
+    font-weight: bold;
+    width: 100%;
+    width: -webkit-calc(100% + 20px);
+    width:    -moz-calc(100% + 20px);
+    width:         calc(100% + 20px);
+    display: inline-block;
+
+}
+
+.game-name {
+	width: 100%;
+	color: #fff;
+	white-space: nowrap;
+	overflow: hidden;
+    text-overflow: ellipsis;
+}
+
 .col-margin{
 	margin: 0 5px;
 }

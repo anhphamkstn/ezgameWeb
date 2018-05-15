@@ -75,7 +75,6 @@ export class Auth {
             async: false
         })
         return status
-        
-        return status
+
     }
 }

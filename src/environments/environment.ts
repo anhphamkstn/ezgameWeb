@@ -11,7 +11,7 @@ export const environment = {
   apiUrls: {
       'loginUrl': "login",
   
-      'getProduct' : 'get-game/PUBG-05',
+      'getProduct' : 'get-game',
 
       'getConfig' : 'config',
 
@@ -21,7 +21,9 @@ export const environment = {
 
       'getProfileUrl': 'me',
 
-      'checkToken' : 'check-token'
+      'checkToken' : 'check-token',
+
+      'update-bio' : 'me/update-bio'
 
   },
 

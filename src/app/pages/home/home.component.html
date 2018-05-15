@@ -55,7 +55,7 @@
                             <div class="product-sell">
                                 <!-- <p class="time-left">03:03:03'</p> -->
                                 <img class="image-game" src="{{getImageUrl(game.image)}}">
-                                <h2 class="title">{{game.name}}</h2>
+                                <h2 class="title"><a  routerLink="{{'/product/'+game.product_id}}" >{{game.name}}</a></h2>
                                 <div class="price-sell">
                                     <div class="price">
                                         <p class="price-new">Giá</p>
@@ -86,11 +86,12 @@
                                     <div class="product-sell">
                                         <img src="{{getImageUrl(game.image)}}">
                                         <div class="price-sell">
+                                        
                                             <div class="discount">
                                                 <i class="fa fa-gamepad" aria-hidden="true"></i>
                                             </div>
                                             <div class="price">
-                                                <p class="price-new">Giá</p>
+                                                <p class="game-name price-new">{{game.name}}</p>
                                                 <p class="price-new">{{game.price | money}} VNĐ</p>
                                             </div>
                                             <div class="add-cart">
@@ -119,6 +120,7 @@
                                 <div class="item">
                                     <div class="product-sell">
                                         <img src="{{getImageUrl(game.image)}}">
+                                        <h2 class="title">{{game.name}}</h2>
                                         <div class="price-sell">
                                             <div class="discount">
                                                 <i class="fa fa-gamepad" aria-hidden="true"></i>
@@ -429,5 +431,10 @@
                 </div>
             </section> -->
         </div>
+    </div>
+    <div class="overlay no-margin" *ngIf="isHomeLoading">
+        <i class="fa">
+            <loading></loading>
+        </i>
     </div>
 </div>

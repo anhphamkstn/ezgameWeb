@@ -11,6 +11,7 @@ import { CheckOutComponent } from '../../pages/check-out/check-out.component';
 import { LoginComponent } from '../../pages/login/login.component';
 import { RegisterComponent } from '../../pages/register/register.component';
 import { LogInGuard } from '../../pages/login/login.guard';
+import { PurchaseHistoryComponent } from '../../pages/purchase-history/purchase-history.component';
 @NgModule({
     imports: [
         MainLayoutRoutingModule,
@@ -25,6 +26,7 @@ import { LogInGuard } from '../../pages/login/login.guard';
         ProfileComponent,
         CheckOutComponent,
         LoginComponent,
+        PurchaseHistoryComponent,
         RegisterComponent],
     providers: [
         MainLayoutGuard,

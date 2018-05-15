@@ -24,7 +24,7 @@
                   <span class="text">Địa chỉ email:</span>
                 </div>
                 <div class="col-md-9">
-                  <input [(ngModel)]="profileNewInfo.email" type="text" class="form-control">
+                  <input [(ngModel)]="profileNewInfo.email" [formControl]="profileEditForm.controls['email']" type="text" class="form-control">
                 </div>
               </div>
               <div class="row">
@@ -32,7 +32,7 @@
                   <span class="text">Tên người dùng</span>
                 </div>
                 <div class="col-md-9">
-                  <input [(ngModel)]="profileNewInfo.name" type="text" class="form-control">
+                  <input [(ngModel)]="profileNewInfo.name" [formControl]="profileEditForm.controls['name']" type="text" class="form-control">
                 </div>
               </div>
               <div class="row">
@@ -40,11 +40,12 @@
                   <span class="text">Số điện thoại:</span>
                 </div>
                 <div class="col-md-9">
-                  <input [(ngModel)]="profileNewInfo.phone" type="number" class="form-control">
+                  <input [(ngModel)]="profileNewInfo.phone" [formControl]="profileEditForm.controls['phone']" type="number" class="form-control">
                 </div>
               </div>
               <div class="row">
-                <button (click)="saveUserInfo($event)">Lưu thông tin</button>
+                <button class="btn btn-primary" (click)="saveUserInfo($event)">Lưu thông tin</button>
+                <button class="btn btn-primary pull right" (click)="signOut($event)">Đăng xuất</button>
               </div>
             </form>
 
@@ -105,7 +106,7 @@
               </div>
             </div>
             <div class="row">
-              <button mat-raised-button color="primary" type="button" (click)="changePassword()" class="btn btn-primary pull-right">Save Password</button>
+              <button  type="button" (click)="changePassword()" class="btn btn-primary">Save Password</button>
             </div>
             <a href="#" class="ez-text">Lịch sử mua hàng</a>
           </div>

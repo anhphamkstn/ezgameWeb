@@ -15,7 +15,8 @@ export class MainLayoutComponent implements OnInit {
         public appState: AppStateService,
     ) {
         this.isLogined = (this.authService.isValidAuthentication() && this.authService.loggedIn)
-        this.appState.getUserProfile();
+        if (this.isLogined)
+            this.appState.getUserProfile();
         
     }
         ngOnInit() {

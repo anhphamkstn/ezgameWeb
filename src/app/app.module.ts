@@ -21,6 +21,7 @@ import { Auth } from './auth/auth';
 @NgModule({
   declarations: [
     AppComponent
+    
   ],
   imports: [
     SharedModule,
