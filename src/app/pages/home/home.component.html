@@ -91,7 +91,7 @@
                                                 <i class="fa fa-gamepad" aria-hidden="true"></i>
                                             </div>
                                             <div class="price">
-                                                <p class="game-name price-new">{{game.name}}</p>
+                                                <p class="game-name price-new"><a  class="link" routerLink="{{'/product/'+game.product_id}}" >{{game.name}}</a></p>
                                                 <p class="price-new">{{game.price | money}} VNĐ</p>
                                             </div>
                                             <div class="add-cart">
@@ -120,13 +120,12 @@
                                 <div class="item">
                                     <div class="product-sell">
                                         <img src="{{getImageUrl(game.image)}}">
-                                        <h2 class="title">{{game.name}}</h2>
                                         <div class="price-sell">
                                             <div class="discount">
                                                 <i class="fa fa-gamepad" aria-hidden="true"></i>
                                             </div>
                                             <div class="price">
-                                                <p class="price-new">Giá</p>
+                                                <p class="price-new"><a class="link" routerLink="{{'/product/'+game.product_id}}" >{{game.name}}</a></p>
                                                 <p class="price-new">{{game.price | money}} VNĐ</p>
                                             </div>
                                             <div class="add-cart">

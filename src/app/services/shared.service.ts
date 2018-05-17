@@ -21,4 +21,9 @@ export class SharedService {
             return '0'
         }
     }
+
+    public getImageUrl(url) {
+        var endPoint = environment.imageUrl
+        return endPoint + url
+    }
 }

@@ -17,6 +17,7 @@ import { LoginComponent } from './pages/login/login.component';
 import { SharedModule } from './shared/shared.module';
 import { RegisterComponent } from './pages/register/register.component';
 import { Auth } from './auth/auth';
+import { SharedService } from './services/shared.service';
 
 @NgModule({
   declarations: [
@@ -33,6 +34,7 @@ import { Auth } from './auth/auth';
   ],
   providers: [
     AppStateService,
+    SharedService,
     APIService,
     MessageService,
     Auth

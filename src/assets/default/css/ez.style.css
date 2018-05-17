@@ -121,6 +121,11 @@ a:focus{
 	text-decoration: none;
 	color: inherit;
 }
+
+.link {
+	text-decoration: none;
+	color: inherit;
+}
 /*--head--*/
 #header{
 	position: relative;

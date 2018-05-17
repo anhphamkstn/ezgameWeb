@@ -2,7 +2,8 @@
   <div class="ez-content ez-page">
     <div class="ez-breadcrumb">
       <div class="tree-view" xmlns:v="http://rdf.data-vocabulary.org/#">
-        <a class="home-icon" href="#" title="Trang chủ"><i class="fa fa-home"></i> Trang chủ</a>
+        <a class="home-icon" href="#" title="Trang chủ">
+          <i class="fa fa-home"></i> Trang chủ</a>
         <span class="tree-normal">></span>
         <span typeof="v:Breadcrumb">
           <a rel="v:url" property="v:title" title="Mua game" href="#">Mua game</a>
@@ -14,183 +15,64 @@
         <span class="tree-after"></span>
       </div>
     </div>
-      <div class="product-wrap">
-        <h1 class="product-title">{{gameInfo.name}}</h1>
-        <div class="row">
-          <div class="col-md-8">
-            <div class="product-img">
-              <img src="assets/default/images/product.png">
-            </div>
-            <div class="product-des">
-              <p>{{gameInfo.name}}</p>
-            </div>
+    <div class="product-wrap">
+      <h1 class="product-title">{{gameInfo.name}}</h1>
+      <div class="row">
+        <div class="col-md-8">
+          <div class="product-img">
+            <img src="{{sharedService.getImageUrl(gameInfo.image)}}">
           </div>
-          <div class="col-md-4">
-            <div class="product-detail">
-              <div class="price-new">{{gameInfo.price | money }} VNĐ</div>
-              <!-- <div class="price-old">
+          <div class="product-des">
+            <p>{{gameInfo.name}}</p>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="product-detail">
+            <div class="price-new">{{gameInfo.price | money }} VNĐ</div>
+            <!-- <div class="price-old">
                 <span class="text">GIÁ TRƯỚC ĐÂY:</span>
                 <span class="price">340.000 VNĐ</span>
               </div> -->
-              <button type="button" class="btn btn-add-cart">THÊM VÀO GIỎ HÀNG</button>
-              <div class="product-discount">
-                <p>EZGame đang có chương trình</p>
+            <button type="button" class="btn btn-add-cart">THÊM VÀO GIỎ HÀNG</button>
+            <div class="product-discount">
+              <p>EZGame đang có chương trình</p>
               <p>Giảm giá 2% khi mua 2 sản phẩm trở lên.</p>
               <p>Bạn có muốn mua thêm ?</p>
-              </div>
-              <button type="button" class="btn btn-check-out">THANH TOÁN</button>
             </div>
+            <button type="button" class="btn btn-check-out">THANH TOÁN</button>
           </div>
         </div>
       </div>
-      <div class="product-orther">
-        <p class="title">Các sản phẩm liên quan khác</p>
-        <ul class="product-hot 100K">
-          <li>
-            <div class="item-wrap">
-              <div class="item">
-                <div class="product-sell">
-                  <img src="assets/default/images/don't-starve-together.jpg">
-                  <div class="price-sell">
-                    <div class="discount">-80%</div>
-                    <div class="price">
-                      <p class="price-old">600.000 VNĐ</p>
-                      <p class="price-new">500.000 VNĐ</p>
-                    </div>
-                    <div class="add-cart"><i class="fa fa-shopping-cart" aria-hidden="true"></i></div>
+    </div>
+    <div class="product-orther">
+      <p class="title">Các sản phẩm liên quan khác</p>
+      <ul class="product-hot 100K">
+        <li *ngFor="let game of gameInSameCatalog">
+          <div class="item-wrap">
+            <div class="item">
+              <div class="product-sell">
+                <img src="{{sharedService.getImageUrl(game.image)}}">
+                <div class="price-sell">
+                  <div class="discount">
+                    <i class="fa fa-gamepad" aria-hidden="true"></i>
                   </div>
-                  <div class="clearfix"></div>
+                  <div class="price">
+                    <p class="game-name price-new">
+                      <a class="link" routerLink="{{'/product/'+game.product_id}}">{{game.name}}</a>
+                    </p>
+                    <p class="price-new">{{game.price | money}} VNĐ</p>
+                  </div>
+                  <div class="add-cart">
+                    <i class="fa fa-shopping-cart" aria-hidden="true"></i>
+                  </div>
                 </div>
+                <div class="clearfix"></div>
               </div>
             </div>
-          </li>
-          <li>
-            <div class="item-wrap">
-              <div class="item">
-                <div class="product-sell">
-                  <img src="assets/default/images/don't-starve-together.jpg">
-                  <div class="price-sell">
-                    <div class="discount">-80%</div>
-                    <div class="price">
-                      <p class="price-old">600.000 VNĐ</p>
-                      <p class="price-new">500.000 VNĐ</p>
-                    </div>
-                    <div class="add-cart"><i class="fa fa-shopping-cart" aria-hidden="true"></i></div>
-                  </div>
-                  <div class="clearfix"></div>
-                </div>
-              </div>
-            </div>
-          </li>
-          <li>
-            <div class="item-wrap">
-              <div class="item">
-                <div class="product-sell">
-                  <img src="assets/default/images/don't-starve-together.jpg">
-                  <div class="price-sell">
-                    <div class="discount">-80%</div>
-                    <div class="price">
-                      <p class="price-old">600.000 VNĐ</p>
-                      <p class="price-new">500.000 VNĐ</p>
-                    </div>
-                    <div class="add-cart"><i class="fa fa-shopping-cart" aria-hidden="true"></i></div>
-                  </div>
-                  <div class="clearfix"></div>
-                </div>
-              </div>
-            </div>
-          </li>
-          <li>
-            <div class="item-wrap">
-              <div class="item">
-                <div class="product-sell">
-                  <img src="assets/default/images/don't-starve-together.jpg">
-                  <div class="price-sell">
-                    <div class="discount">-80%</div>
-                    <div class="price">
-                      <p class="price-old">600.000 VNĐ</p>
-                      <p class="price-new">500.000 VNĐ</p>
-                    </div>
-                    <div class="add-cart"><i class="fa fa-shopping-cart" aria-hidden="true"></i></div>
-                  </div>
-                  <div class="clearfix"></div>
-                </div>
-              </div>
-            </div>
-          </li>
-          <li>
-            <div class="item-wrap">
-              <div class="item">
-                <div class="product-sell">
-                  <img src="assets/default/images/don't-starve-together.jpg">
-                  <div class="price-sell">
-                    <div class="discount">-80%</div>
-                    <div class="price">
-                      <p class="price-old">600.000 VNĐ</p>
-                      <p class="price-new">500.000 VNĐ</p>
-                    </div>
-                    <div class="add-cart"><i class="fa fa-shopping-cart" aria-hidden="true"></i></div>
-                  </div>
-                  <div class="clearfix"></div>
-                </div>
-              </div>
-            </div>
-          </li>
-          <li>
-            <div class="item-wrap">
-              <div class="item">
-                <div class="product-sell">
-                  <img src="assets/default/images/don't-starve-together.jpg">
-                  <div class="price-sell">
-                    <div class="discount">-80%</div>
-                    <div class="price">
-                      <p class="price-old">600.000 VNĐ</p>
-                      <p class="price-new">500.000 VNĐ</p>
-                    </div>
-                    <div class="add-cart"><i class="fa fa-shopping-cart" aria-hidden="true"></i></div>
-                  </div>
-                  <div class="clearfix"></div>
-                </div>
-              </div>
-            </div>
-          </li>
-          <li>
-            <div class="item-wrap">
-              <div class="item">
-                <div class="product-sell">
-                  <img src="assets/default/images/don't-starve-together.jpg">
-                  <div class="price-sell">
-                    <div class="discount">-80%</div>
-                    <div class="price">
-                      <p class="price-old">600.000 VNĐ</p>
-                      <p class="price-new">500.000 VNĐ</p>
-                    </div>
-                    <div class="add-cart"><i class="fa fa-shopping-cart" aria-hidden="true"></i></div>
-                  </div>
-                  <div class="clearfix"></div>
-                </div>
-              </div>
-            </div>
-          </li>
-          <li>
-            <div class="item-wrap">
-              <div class="item">
-                <div class="product-sell">
-                  <img src="assets/default/images/don't-starve-together.jpg">
-                  <div class="price-sell">
-                    <div class="discount">-80%</div>
-                    <div class="price">
-                      <p class="price-old">600.000 VNĐ</p>
-                      <p class="price-new">500.000 VNĐ</p>
-                    </div>
-                    <div class="add-cart"><i class="fa fa-shopping-cart" aria-hidden="true"></i></div>
-                  </div>
-                  <div class="clearfix"></div>
-                </div>
-              </div>
-            </div>
-          </li>
-        </ul>
-      </div>
+          </div>
+        </li>
+
+      </ul>
+    </div>
   </div>
 </div>

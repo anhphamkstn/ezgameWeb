@@ -26,19 +26,30 @@
                         <div class="form-group has-feedback">
                             <i class="fa fa-search form-control-feedback" aria-hidden="true"></i>
                             <label for="search" class="sr-only">TÌM KIẾM (GAME STEAM, BUNDLE, WALLET CODE ...)</label>
-                            <input type="text" class="form-control" name="search" id="search" placeholder="TÌM KIẾM (GAME STEAM, BUNDLE, WALLET CODE ...)">
+                            <input matInput [formControl]="searchCtrl" [matAutocomplete]="auto" type="text" class="form-control" name="search" id="search"
+                                placeholder="TÌM KIẾM (GAME STEAM, BUNDLE, WALLET CODE ...)">
+                            <mat-autocomplete #auto="matAutocomplete" (optionSelected)="selectGame($event)">
+                                <mat-option *ngFor="let game of filteredGames | async" [value]="game.product_id">
+                                    <div *ngIf="game.product_id">
+                                        <img style="vertical-align:middle;" aria-hidden src="{{getImageUrl(game.image)}}" height="25" />
+                                        <span>{{ game.name }}</span> |
+                                        <small>Giá: {{game.price | money}} VNĐ</small>
+                                    </div>
+                                </mat-option>
+                            </mat-autocomplete>
+
                         </div>
                     </div>
-                    <div  class="btn-login-wrap">
+                    <div class="btn-login-wrap">
                         <a *ngIf="!authService.loggedIn" class="btn-login cursor" onclick="location.replace('/login')">
                             <span class="cursor">ĐĂNG NHẬP</span>
                             <img class="cursor" src="assets/default/images/icon-user.png">
                         </a>
-                        <a  *ngIf="authService.loggedIn" onclick="location.replace('/profile')" class="btn-login cursor" >
+                        <a *ngIf="authService.loggedIn" onclick="location.replace('/profile')" class="btn-login cursor">
                             <span class="cursor">{{appState.user_profile.name}}</span>
                             <img class="cursor" src="assets/default/images/icon-user.png">
                             <!-- <img *ngIf="appState.avatar_url" [src]="appState.avatar_url" alt="User Image"> -->
-                           <!-- <b style="font-size: 1.5vw">Xin chào {{appState.user_profile.name}}</b>  -->
+                            <!-- <b style="font-size: 1.5vw">Xin chào {{appState.user_profile.name}}</b>  -->
                         </a>
                     </div>
                     <div class="clearfix"></div>
@@ -50,19 +61,19 @@
                 <div id="ez-navbar" class="collapse">
                     <ul class="ez-navbar-nav">
                         <li class="active">
-                            <a href="#" >GAME</a>
+                            <a href="#">GAME</a>
                         </li>
                         <li>
-                            <a href="#" >THUÊ GAME</a>
+                            <a href="#">THUÊ GAME</a>
                         </li>
                         <li>
-                            <a href="#" >WALLET CODES</a>
+                            <a href="#">WALLET CODES</a>
                         </li>
                         <li>
-                            <a href="#" >PHỤ KIỆN</a>
+                            <a href="#">PHỤ KIỆN</a>
                         </li>
                         <li>
-                            <a href="#" >ITEM GAME</a>
+                            <a href="#">ITEM GAME</a>
                         </li>
                         <li>
                             <span>TẶNG NGAY 5000 VNĐ

@@ -13,6 +13,8 @@ export const environment = {
   
       'getProduct' : 'get-game',
 
+      'catalog' : 'catalog',
+
       'getConfig' : 'config',
 
       'check-email' : 'check-email',
@@ -23,7 +25,11 @@ export const environment = {
 
       'checkToken' : 'check-token',
 
-      'update-bio' : 'me/update-bio'
+      'update-bio' : 'me/update-bio',
+
+      'search' : 'search',
+
+      'cart' : 'cart'
 
   },
 
