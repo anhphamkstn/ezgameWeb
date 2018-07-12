@@ -48,9 +48,18 @@
                         <a *ngIf="authService.loggedIn" onclick="location.replace('/profile')" class="btn-login cursor">
                             <span class="cursor">{{appState.user_profile.name}}</span>
                             <img class="cursor" src="assets/default/images/icon-user.png">
+                            <span *ngIf="purchaseSerive.cart" class="cursor">Giỏ hàng ({{purchaseSerive.cart.products.length}})</span>
                             <!-- <img *ngIf="appState.avatar_url" [src]="appState.avatar_url" alt="User Image"> -->
                             <!-- <b style="font-size: 1.5vw">Xin chào {{appState.user_profile.name}}</b>  -->
                         </a>
+                        <!-- <a>
+                            <div class="item cart">
+                                <div class="badge">
+                                    <span class="number">2</span>
+                                </div>
+                                <img src="assets/default/images/cart.png">
+                            </div>
+                        </a> -->
                     </div>
                     <div class="clearfix"></div>
                 </div>

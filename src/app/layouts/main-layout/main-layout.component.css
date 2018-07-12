@@ -1,3 +1,14 @@
 .user-avatar :hover {
     color: antiquewhite;
 }
+
+.item .badge {
+    position: absolute;
+    font-size: 13px;
+    background: #e54d3c;
+    border-radius: 50%;
+    width: 20px;
+    height: 20px;
+    right: -10px;
+    top: -10px;
+}

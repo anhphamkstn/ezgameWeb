@@ -63,7 +63,7 @@
                                     </div>
                                     <div class="add-cart">
                                         <span>THÊM VÀO GIỎ </span>
-                                        <i class="fa fa-shopping-cart" aria-hidden="true"></i>
+                                        <i (click)="addProductToCart($event,game)" class="fa fa-shopping-cart" aria-hidden="true"></i>
                                     </div>
                                 </div>
                                 <div class="clearfix"></div>
@@ -94,7 +94,7 @@
                                                 <p class="game-name price-new"><a  class="link" routerLink="{{'/product/'+game.product_id}}" >{{game.name}}</a></p>
                                                 <p class="price-new">{{game.price | money}} VNĐ</p>
                                             </div>
-                                            <div class="add-cart">
+                                            <div (click)="addProductToCart($event,game)"  class="add-cart">
                                                 <i class="fa fa-shopping-cart" aria-hidden="true"></i>
                                             </div>
                                         </div>
@@ -125,11 +125,11 @@
                                                 <i class="fa fa-gamepad" aria-hidden="true"></i>
                                             </div>
                                             <div class="price">
-                                                <p class="price-new"><a class="link" routerLink="{{'/product/'+game.product_id}}" >{{game.name}}</a></p>
+                                                <p class="game-name price-new"><a class="link" routerLink="{{'/product/'+game.product_id}}" >{{game.name}}</a></p>
                                                 <p class="price-new">{{game.price | money}} VNĐ</p>
                                             </div>
                                             <div class="add-cart">
-                                                <i class="fa fa-shopping-cart" aria-hidden="true"></i>
+                                                <i (click)="addProductToCart($event,game)" class="fa fa-shopping-cart" aria-hidden="true"></i>
                                             </div>
                                         </div>
                                         <div class="clearfix"></div>

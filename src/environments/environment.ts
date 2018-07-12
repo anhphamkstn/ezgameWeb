@@ -5,9 +5,9 @@
 
 export const environment = {
   production: false,
-  endPoint: "http://ezgamestore.com/api/",
-  domain: "http://ezgamestore.com",
-  imageUrl: "http://ezgamestore.com/upload/",
+  endPoint: "http://45.77.243.115/api/",
+  domain: "http://45.77.243.115",
+  imageUrl: "http://45.77.243.115/upload/",
   apiUrls: {
       'loginUrl': "login",
   

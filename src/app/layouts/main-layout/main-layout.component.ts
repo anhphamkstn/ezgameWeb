@@ -9,6 +9,7 @@ import { APIService } from '../../auth/APIService';
 import { Game } from '../../models/game.model';
 import { MatAutocompleteSelectedEvent } from '@angular/material';
 import { Router, ActivatedRoute } from '@angular/router';
+import { PurchaseService } from '../../services/purchase.service';
 
 export class State {
     constructor(public name: string, public population: string, public flag: string) { }
@@ -31,6 +32,7 @@ export class MainLayoutComponent implements OnInit {
         public api: APIService,
         public appState: AppStateService,
         public router: Router,
+        public purchaseSerive : PurchaseService,
         public route: ActivatedRoute,
     ) {
         this.isLogined = (this.authService.isValidAuthentication() && this.authService.loggedIn)

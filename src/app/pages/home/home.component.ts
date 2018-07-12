@@ -4,6 +4,7 @@ import { APIService } from '../../auth/APIService';
 import { Router, ActivatedRoute } from '@angular/router';
 import { MessageService } from '../../services/message-service/message.service';
 import { environment } from '../../../environments/environment';
+import { PurchaseService } from '../../services/purchase.service';
 declare var $: any;
 
 export interface Slider {
@@ -28,6 +29,7 @@ export class HomeComponent implements OnInit {
     public api: APIService,
     public router: Router,
     public route: ActivatedRoute,
+    public purchaseSerive : PurchaseService,
     public messageService: MessageService
   ) { }
 
@@ -56,12 +58,12 @@ export class HomeComponent implements OnInit {
           controller.allGameInfo = res.products;
           controller.slides = res.config.slides;
           controller.initSlide();
-          
+
           controller.newGames = controller.filterGameFromIDs(res.config.new_game_ids)
           controller.promotionGame = controller.filterGameFromIDs(res.config.promotion_game_ids)
           controller.hotGame = controller.filterGameFromIDs(res.config.hot_game_ids)
           this.isHomeLoading = false;
-          
+
         },
         err => {
           this.isHomeLoading = false;
@@ -85,8 +87,8 @@ export class HomeComponent implements OnInit {
 
   }
 
-  filterGameFromIDs(gameIds : [any]){
-    return this.allGameInfo.filter( (game) => gameIds.indexOf(game._id) != -1)
+  filterGameFromIDs(gameIds: [any]) {
+    return this.allGameInfo.filter((game) => gameIds.indexOf(game._id) != -1)
   }
 
   getPropertyGameInfoById(id: string, key: string) {
@@ -97,7 +99,13 @@ export class HomeComponent implements OnInit {
   getImageUrl(url) {
     var endPoint = environment.imageUrl
     return endPoint + url
-}
+  }
+
+  addProductToCart(event,game) {
+    event.preventDefault();
+    this.purchaseSerive.addProductToCart(game);
+    
+  }
 
 
 
