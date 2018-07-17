@@ -28,28 +28,28 @@
               </div>
               <ul class="bank-list clearfix">
                 <li>
-                  <button class="btn btn-bank" style="background-image: url('default/images/bank/agribank.jpg');"></button>
+                  <button class="btn btn-bank" style="background-image: url('assets/default/images/bank/agribank.jpg');"></button>
                 </li>
                 <li>
-                  <button class="btn btn-bank" style="background-image: url('default/images/bank/bidv.jpg');"></button>
+                  <button class="btn btn-bank" style="background-image: url('assets/default/images/bank/bidv.jpg');"></button>
                 </li>
                 <li>
-                  <button class="btn btn-bank" style="background-image: url('default/images/bank/vietcombank.jpg');"></button>
+                  <button class="btn btn-bank" style="background-image: url('assets/default/images/bank/vietcombank.jpg');"></button>
                 </li>
                 <li>
-                  <button class="btn btn-bank" style="background-image: url('default/images/bank/vietinbank.jpg');"></button>
+                  <button class="btn btn-bank" style="background-image: url('assets/default/images/bank/vietinbank.jpg');"></button>
                 </li>
                 <li>
-                  <button class="btn btn-bank" style="background-image: url('default/images/bank/sacombank.jpg');"></button>
+                  <button class="btn btn-bank" style="background-image: url('assets/default/images/bank/sacombank.jpg');"></button>
                 </li>
                 <li>
-                  <button class="btn btn-bank" style="background-image: url('default/images/bank/techcombank.jpg');"></button>
+                  <button class="btn btn-bank" style="background-image: url('assets/default/images/bank/techcombank.jpg');"></button>
                 </li>
                 <li>
-                  <button class="btn btn-bank" style="background-image: url('default/images/bank/acb.jpg');"></button>
+                  <button class="btn btn-bank" style="background-image: url('assets/default/images/bank/acb.jpg');"></button>
                 </li>
                 <li>
-                  <button class="btn btn-bank" style="background-image: url('default/images/bank/vpbank.jpg');"></button>
+                  <button class="btn btn-bank" style="background-image: url('assets/default/images/bank/vpbank.jpg');"></button>
                 </li>
                 
               </ul>
@@ -100,7 +100,7 @@
             <div class="card check-out-row">
               <div class="radio">
                 <label>
-                  <input type="radio" name="check-out" checked="checked">Goao dịch trực tiếp tại các chi nhánh của EZGame store			
+                  <input type="radio" name="check-out" checked="checked">Giao dịch trực tiếp tại các chi nhánh của EZGame store			
                 </label>
               </div>
               <a class="ez-text" href="#">(Click vào đây để xem bộ hệ thống EZGame trên toàn quốc)</a>
@@ -120,7 +120,7 @@
       <div class="col-md-4">
         <div class="col-margin check-out-bg2 ">
           <div class="order-info">
-            <h2 class="title text-center">đơn hàng: #ezg100011</h2>	
+            <h2 class="title text-center">đơn hàng: {{purchaseSerive.cart._id}}</h2>	
             <div class="table-responsive">
               <table class="table table-striped">
                 <thead>
@@ -130,22 +130,14 @@
                   </tr>
                 </thead>
                 <tbody>
-                  <tr>
-                    <td>Counter Strike - Global Offensive</td>
-                    <td>100.000 VNĐ</td>
-                  </tr>
-                  <tr>
-                    <td>Counter Strike - Global Offensive</td>
-                    <td>100.000 VNĐ</td>
-                  </tr>
-                  <tr>
-                    <td>Counter Strike - Global Offensive</td>
-                    <td>100.000 VNĐ</td>
+                  <tr *ngFor="let game of purchaseSerive.cart.products">
+                    <td>{{game.name}}</td>
+                    <td>{{game.price | money}} VNĐ</td>
                   </tr>
                 </tbody>
                 <tfoot>
                   <tr>
-                    <td colspan="2" align="right"><strong>300.000 VNĐ</strong></td>
+                    <td colspan="2" align="right"><strong>{{total | money}} VNĐ</strong></td>
                   </tr>
                 </tfoot>
               </table>

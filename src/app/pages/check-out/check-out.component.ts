@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { PurchaseService } from '../../services/purchase.service';
 
 @Component({
   selector: 'app-check-out',
@@ -7,9 +8,18 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CheckOutComponent implements OnInit {
 
-  constructor() { }
+  constructor(
+    public purchaseSerive : PurchaseService,
+  ) { }
+
+  public total = 0;
 
   ngOnInit() {
+    console.log(this.purchaseSerive.cart)
+    this.purchaseSerive.cart.products.forEach(e => {
+      this.total += e.price 
+      
+    });
   }
 
 }

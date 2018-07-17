@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, AfterViewInit } from '@angular/core';
 import { Auth } from '../../auth/auth';
 import { AppStateService } from '../../services/app-state.service';
 import { environment } from '../../../environments/environment';
@@ -21,7 +21,7 @@ export class State {
     styleUrls: ["./main-layout.component.css"]
 })
 
-export class MainLayoutComponent implements OnInit {
+export class MainLayoutComponent implements OnInit , AfterViewInit {
 
     public searchCtrl: FormControl;
     filteredGames: Observable<any[]>;
@@ -36,8 +36,10 @@ export class MainLayoutComponent implements OnInit {
         public route: ActivatedRoute,
     ) {
         this.isLogined = (this.authService.isValidAuthentication() && this.authService.loggedIn)
-        if (this.isLogined)
+        if (this.isLogined) {
             this.appState.getUserProfile();
+        }
+            
         this.searchCtrl = new FormControl();
         this.filteredGames = this.searchCtrl.valueChanges
             .pipe(
@@ -48,6 +50,12 @@ export class MainLayoutComponent implements OnInit {
     }
     ngOnInit() {
         this.isLogined = (this.authService.isValidAuthentication() && this.authService.loggedIn)
+    }
+
+    ngAfterViewInit() {
+        if (this.isLogined) {
+            this.purchaseSerive.getCart();
+        }
     }
 
     getImageUrl(url) {

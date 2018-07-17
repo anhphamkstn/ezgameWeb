@@ -16,7 +16,7 @@
                         <i class="fa fa-bars" aria-hidden="true"></i>
                     </button>
 
-                    <a href="#" id="ez-logo">
+                    <a href="#" [routerLink]="['/']" id="ez-logo">
                         <div class="img">
                             <img src="assets/default/images/logo.png" />
                         </div>
@@ -41,17 +41,29 @@
                         </div>
                     </div>
                     <div class="btn-login-wrap">
-                        <a *ngIf="!authService.loggedIn" class="btn-login cursor" onclick="location.replace('/login')">
-                            <span class="cursor">ĐĂNG NHẬP</span>
-                            <img class="cursor" src="assets/default/images/icon-user.png">
-                        </a>
-                        <a *ngIf="authService.loggedIn" onclick="location.replace('/profile')" class="btn-login cursor">
-                            <span class="cursor">{{appState.user_profile.name}}</span>
-                            <img class="cursor" src="assets/default/images/icon-user.png">
-                            <span *ngIf="purchaseSerive.cart" class="cursor">Giỏ hàng ({{purchaseSerive.cart.products.length}})</span>
-                            <!-- <img *ngIf="appState.avatar_url" [src]="appState.avatar_url" alt="User Image"> -->
-                            <!-- <b style="font-size: 1.5vw">Xin chào {{appState.user_profile.name}}</b>  -->
-                        </a>
+                        <table>
+                            <tr>
+                                <td style="height: 50%">
+                                    <a *ngIf="!authService.loggedIn" class="btn-login cursor" [routerLink]="['/login']">
+                                        <span class="cursor">ĐĂNG NHẬP</span>
+                                        <img class="cursor" src="assets/default/images/icon-user.png">
+                                    </a>
+                                    <a *ngIf="authService.loggedIn" [routerLink]="['/profile']" class="btn-login cursor">
+                                        <span class="cursor">{{appState.user_profile.name}}</span>
+                                        <img class="cursor" src="assets/default/images/icon-user.png">
+                                    </a>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <a *ngIf="purchaseSerive.cart" class="btn-login cursor" [routerLink]="['/check-out']">
+                                        <span class="cursor">Giỏ hàng ({{purchaseSerive.cart.products.length}})</span>
+                                        <img class="cursor" src="assets/default/images/cart.png">
+                                    </a>
+                                </td>
+                            </tr>
+                        </table>
+
                         <!-- <a>
                             <div class="item cart">
                                 <div class="badge">

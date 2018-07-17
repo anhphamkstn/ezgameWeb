@@ -5,5 +5,6 @@ export class Game {
     public name: string;
     public image?: string;
     public price?: number;
-    public __v ?: string
+    public __v ?: string;
+    public qty ?: number;
   }

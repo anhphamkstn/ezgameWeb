@@ -41,7 +41,7 @@ export class HomeComponent implements OnInit {
   public promotionGame = [];
   public hotGame = []
   public newGames = []
-  public isHomeLoading = false;
+  public isHomeLoading = true;
 
   ngOnInit() {
     this.getConfigInfo()
@@ -62,11 +62,11 @@ export class HomeComponent implements OnInit {
           controller.newGames = controller.filterGameFromIDs(res.config.new_game_ids)
           controller.promotionGame = controller.filterGameFromIDs(res.config.promotion_game_ids)
           controller.hotGame = controller.filterGameFromIDs(res.config.hot_game_ids)
-          this.isHomeLoading = false;
+          this.isHomeLoading = true;
 
         },
         err => {
-          this.isHomeLoading = false;
+          this.isHomeLoading = true;
           this.messageService.createErrorMessage("", "Can't get config info");
         }
       )

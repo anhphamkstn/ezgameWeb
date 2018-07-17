@@ -1,13 +1,10 @@
-import { Injectable, EventEmitter } from '@angular/core';
+import { Injectable } from '@angular/core';
 import { APIService } from '../auth/APIService';
 import { environment } from '../../environments/environment';
 import { Router,Event, NavigationEnd } from '@angular/router';
 import { User } from '../models/user.model';
 
 
-declare var jQuery: any; 
-//import { avatarDefautlUrl } from "../constants/constant";
-declare var Sbi: any;
 
 @Injectable()
 export class AppStateService {
@@ -57,4 +54,6 @@ export class AppStateService {
             }
         );
     }
+
+    
 }

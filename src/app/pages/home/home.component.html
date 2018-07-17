@@ -61,9 +61,9 @@
                                         <p class="price-new">Giá</p>
                                         <p class="price-new">{{game.price | money}} VNĐ</p>
                                     </div>
-                                    <div class="add-cart">
+                                    <div (click)="addProductToCart($event,game)" class="add-cart">
                                         <span>THÊM VÀO GIỎ </span>
-                                        <i (click)="addProductToCart($event,game)" class="fa fa-shopping-cart" aria-hidden="true"></i>
+                                        <i  class="fa fa-shopping-cart" aria-hidden="true"></i>
                                     </div>
                                 </div>
                                 <div class="clearfix"></div>

@@ -5,9 +5,9 @@
 
 export const environment = {
   production: false,
-  endPoint: "http://45.77.243.115/api/",
-  domain: "http://45.77.243.115",
-  imageUrl: "http://45.77.243.115/upload/",
+  endPoint: "http://45.77.243.115:8080/api/",
+  domain: "http://45.77.243.115:8080",
+  imageUrl: "http://45.77.243.115:8080/upload/",
   apiUrls: {
       'loginUrl': "login",
   

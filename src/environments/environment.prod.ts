@@ -1,21 +1,39 @@
 export const environment = {
-  production: true,
-  endPoint: "https://api.howizbiz.com/api",
-  domain: "https://howizbiz.com/",
-  avatarUrl: "https://api.howizbiz.com/avatars/",
+    production: true,
+    endPoint: "http://45.77.243.115:8080/api/",
+    domain: "http://45.77.243.115:8080",
+    imageUrl: "http://45.77.243.115:8080/upload/",
+    apiUrls: {
+        'loginUrl': "login",
 
-  apiUrls: {
-      'loginUrl': "/login",
-  
-      'userApi' : '/users'
-  },
+        'getProduct': 'get-game',
 
-  getUrl: function (apiName: string) {
+        'catalog': 'catalog',
 
-      return this.endPoint + this.apiUrls[apiName];
-  },
+        'getConfig': 'config',
 
-  localStorageVariablesName: {
+        'check-email': 'check-email',
 
-  }
+        'register': 'register',
+
+        'getProfileUrl': 'me',
+
+        'checkToken': 'check-token',
+
+        'update-bio': 'me/update-bio',
+
+        'search': 'search',
+
+        'cart': 'cart'
+
+    },
+
+    getUrl: function (apiName: string) {
+
+        return this.endPoint + this.apiUrls[apiName];
+    },
+
+    localStorageVariablesName: {
+
+    }
 }
