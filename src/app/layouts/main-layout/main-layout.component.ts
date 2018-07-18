@@ -28,7 +28,7 @@ export class MainLayoutComponent implements OnInit , AfterViewInit {
 
     public isLogined = false;
     constructor(
-        private authService: Auth,
+        public authService: Auth,
         public api: APIService,
         public appState: AppStateService,
         public router: Router,

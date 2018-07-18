@@ -49,7 +49,7 @@ export class ProfileComponent implements OnInit, AfterViewInit {
     public route: ActivatedRoute,
     public api: APIService,
     public messageService: MessageService,
-    private authService: Auth,
+    public authService: Auth,
     public appState: AppStateService) { }
 
   ngOnInit() {
@@ -86,7 +86,8 @@ export class ProfileComponent implements OnInit, AfterViewInit {
     }
   }
 
-  signOut() {
+  signOut(event) {
+    event.preventDefault()
     this.authService.logout();
     location.replace('/');
   }
@@ -163,6 +164,10 @@ export class ProfileComponent implements OnInit, AfterViewInit {
     let params: URLSearchParams = new URLSearchParams();
     return this.api.get(environment.getUrl('getProfileUrl'), params)
       .map(res => res.json());
+  }
+
+  changePassword() {
+    
   }
 
 }

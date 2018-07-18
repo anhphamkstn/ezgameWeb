@@ -12,6 +12,7 @@ import { LoginComponent } from '../../pages/login/login.component';
 import { RegisterComponent } from '../../pages/register/register.component';
 import { LogInGuard } from '../../pages/login/login.guard';
 import { PurchaseHistoryComponent } from '../../pages/purchase-history/purchase-history.component';
+import { MessageComponent } from '../../services/message-service/message.component';
 @NgModule({
     imports: [
         MainLayoutRoutingModule,
@@ -27,6 +28,7 @@ import { PurchaseHistoryComponent } from '../../pages/purchase-history/purchase-
         CheckOutComponent,
         LoginComponent,
         PurchaseHistoryComponent,
+        MessageComponent,
         RegisterComponent],
     providers: [
         MainLayoutGuard,
