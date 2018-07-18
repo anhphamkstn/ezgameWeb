@@ -1,12 +1,13 @@
 import { Component, OnInit, AfterViewInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
-import { APIService } from '../../auth/APIService';
 import { MessageService } from '../../services/message-service/message.service';
 import { AppStateService } from '../../services/app-state.service';
 import { User } from '../../models/user.model';
 import { environment } from '../../../environments/environment';
-import { Auth } from '../../auth/auth';
+import { APIService } from '../../authenticate/api.service';
+import { Auth } from '../../authenticate/auth.service';
+
 
 declare var jQuery: any;
 

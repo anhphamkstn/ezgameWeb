@@ -1,8 +1,9 @@
 import { Injectable } from '@angular/core';
-import { Auth } from '../../auth/auth';
 import { Router, ActivatedRouteSnapshot, RouterStateSnapshot, CanActivate} from '@angular/router';
 import {AppStateService} from "../../services/app-state.service";
-import {APIService} from '../../auth/APIService';
+import { Auth } from '../../authenticate/auth.service';
+import { APIService } from '../../authenticate/api.service';
+
 
 @Injectable()
 export class MainLayoutGuard implements CanActivate {

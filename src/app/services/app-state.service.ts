@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
-import { APIService } from '../auth/APIService';
 import { environment } from '../../environments/environment';
 import { Router,Event, NavigationEnd } from '@angular/router';
 import { User } from '../models/user.model';
+import { APIService } from '../authenticate/api.service';
 
 
 

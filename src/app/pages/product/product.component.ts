@@ -1,11 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
-import { APIService } from '../../auth/APIService';
 import { AppStateService } from '../../services/app-state.service';
 import { MessageService } from '../../services/message-service/message.service';
 import { environment } from '../../../environments/environment';
 import { Game } from '../../models/game.model';
 import { SharedService } from '../../services/shared.service';
+import { APIService } from '../../authenticate/api.service';
 
 @Component({
   selector: 'app-product',

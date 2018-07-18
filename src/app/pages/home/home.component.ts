@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { AppStateService } from '../../services/app-state.service';
-import { APIService } from '../../auth/APIService';
 import { Router, ActivatedRoute } from '@angular/router';
 import { MessageService } from '../../services/message-service/message.service';
 import { environment } from '../../../environments/environment';
 import { PurchaseService } from '../../services/purchase.service';
+import { APIService } from '../../authenticate/api.service';
 declare var $: any;
 
 export interface Slider {

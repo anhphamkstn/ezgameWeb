@@ -1,8 +1,8 @@
 import { Component, OnInit, AfterViewInit } from '@angular/core';
 import { AppStateService } from '../../services/app-state.service';
 import { environment } from '../../../environments/environment';
-import { APIService } from '../../auth/APIService';
 import { Router } from '@angular/router';
+import { APIService } from '../../authenticate/api.service';
 
 declare var jQuery: any;
 

@@ -1,15 +1,15 @@
 import { Component, OnInit, AfterViewInit } from '@angular/core';
-import { Auth } from '../../auth/auth';
 import { AppStateService } from '../../services/app-state.service';
 import { environment } from '../../../environments/environment';
 import { Observable } from 'rxjs';
 import { FormControl } from '@angular/forms';
 import { map, startWith } from 'rxjs/operators';
-import { APIService } from '../../auth/APIService';
 import { Game } from '../../models/game.model';
 import { MatAutocompleteSelectedEvent } from '@angular/material';
 import { Router, ActivatedRoute } from '@angular/router';
 import { PurchaseService } from '../../services/purchase.service';
+import { APIService } from '../../authenticate/api.service';
+import { Auth } from '../../authenticate/auth.service';
 
 export class State {
     constructor(public name: string, public population: string, public flag: string) { }

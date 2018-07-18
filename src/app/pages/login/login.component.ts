@@ -1,9 +1,9 @@
 import { Component, OnInit, AfterViewInit, ViewChildren, ViewChild, ElementRef } from '@angular/core';
 import { Router } from '@angular/router';
-import { APIService } from '../../auth/APIService';
-import { Auth } from '../../auth/auth';
 import { AppStateService } from '../../services/app-state.service';
 import { environment } from '../../../environments/environment';
+import { APIService } from '../../authenticate/api.service';
+import { Auth } from '../../authenticate/auth.service';
 
 declare var jQuery: any;
 

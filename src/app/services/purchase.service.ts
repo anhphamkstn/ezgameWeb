@@ -3,9 +3,9 @@ import 'rxjs/Rx';
 import { environment } from "../../environments/environment";
 import { Game } from '../models/game.model';
 import { Cart } from '../models/cart.model';
-import { APIService } from '../auth/APIService';
 import { AppStateService } from './app-state.service';
 import { MessageService } from './message-service/message.service';
+import { APIService } from '../authenticate/api.service';
 
 
 export class Product {
