@@ -27,52 +27,30 @@
                 </label>
               </div>
               <ul class="bank-list clearfix">
-                <li>
-                  <button class="btn btn-bank" style="background-image: url('assets/default/images/bank/agribank.jpg');"></button>
-                </li>
-                <li>
-                  <button class="btn btn-bank" style="background-image: url('assets/default/images/bank/bidv.jpg');"></button>
-                </li>
-                <li>
-                  <button class="btn btn-bank" style="background-image: url('assets/default/images/bank/vietcombank.jpg');"></button>
-                </li>
-                <li>
-                  <button class="btn btn-bank" style="background-image: url('assets/default/images/bank/vietinbank.jpg');"></button>
-                </li>
-                <li>
-                  <button class="btn btn-bank" style="background-image: url('assets/default/images/bank/sacombank.jpg');"></button>
-                </li>
-                <li>
-                  <button class="btn btn-bank" style="background-image: url('assets/default/images/bank/techcombank.jpg');"></button>
-                </li>
-                <li>
-                  <button class="btn btn-bank" style="background-image: url('assets/default/images/bank/acb.jpg');"></button>
-                </li>
-                <li>
-                  <button class="btn btn-bank" style="background-image: url('assets/default/images/bank/vpbank.jpg');"></button>
-                </li>
-                
+                <li *ngFor="let bank of banks">
+                  <button class="btn btn-bank" (click)="selectBankByName(bank)" [ngStyle]=" { 'background-image' : 'url(' + bank.url + ')'  }"></button>
+                </li>             
               </ul>
               <br>
               <div class="bank-account">
                 <div class="row">
                   <div class="col-sm-6">
                     <span class="bank-text">Số tài khoản:</span>
-                    <span class="bank-text">0011004189959</span>
+                    <span class="bank-text">{{selectBank.number}}</span>
                   </div>
-                  <div class="col-sm-6">
+                  <!-- <div class="col-sm-6">
                     <span class="bank-text">Số thẻ:</span>
-                    <span class="bank-text">9704xxxxxxxxxx</span>
-                  </div>
+                    <span class="bank-text">{{selectBank.user}}</span>
+                  </div> -->
                 </div>
                 <div class="row">
                   <div class="col-sm-6">
                     <span class="bank-text">Chủ tài khoản:</span>
-                    <span class="bank-text">Nguyễn Mạnh Toàn</span>
+                    <span class="bank-text">{{selectBank.user}}</span>
                   </div>
                   <div class="col-sm-6">
                     <span class="bank-text">Chi nhánh:</span>
-                    <span class="bank-text">Nguyễn Mạnh Toàn</span>
+                    <span class="bank-text">{{selectBank.chiNhanh}}</span>
                   </div>
                 </div>
 
@@ -90,7 +68,7 @@
                     </div>
                   </div>
                   <div class="col-sm-5">
-                    <span class="bank-code">FS8X</span>
+                    <span class="bank-code">{{purchaseSerive.orderID}}</span>
                   </div>
                 </div>
                 
@@ -144,7 +122,7 @@
             </div>
           </div>
           <div class="hostory-order">
-            <a class="btn" href="#">LỊCH SỬ MUA HÀNG</a>
+            <a [routerLink]="['/purchase-history']" class="btn" >LỊCH SỬ MUA HÀNG</a>
           </div>
         </div>
       </div>

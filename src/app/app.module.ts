@@ -3,12 +3,12 @@ import { NgModule  } from '@angular/core';
 import { AppComponent } from './app.component';
 import {AppRoutingModule} from "./app-routing.module"
 import { MainLayoutModule } from './layouts/main-layout/main-layout.module';
-import { AppStateService } from './services/app-state.service';
+import { AppStateService, UserResolver } from './services/app-state.service';
 import { HttpModule } from '@angular/http';
 import { MessageService } from './services/message-service/message.service';
 import { SharedModule } from './shared/shared.module';
 import { SharedService } from './services/shared.service';
-import { PurchaseService } from './services/purchase.service';
+import { PurchaseService, CartResolver } from './services/purchase.service';
 import { APIService } from './authenticate/api.service';
 import { Auth } from './authenticate/auth.service';
 
@@ -31,7 +31,9 @@ import { Auth } from './authenticate/auth.service';
     PurchaseService,
     APIService,
     MessageService,
-    Auth
+    Auth,
+    UserResolver,
+    CartResolver
    
   ],
   bootstrap: [AppComponent]

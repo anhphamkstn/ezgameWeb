@@ -1,8 +1,9 @@
 import { Injectable } from '@angular/core';
 import { environment } from '../../environments/environment';
-import { Router,Event, NavigationEnd } from '@angular/router';
+import { Router,Event, NavigationEnd, Resolve, ActivatedRouteSnapshot, RouterStateSnapshot } from '@angular/router';
 import { User } from '../models/user.model';
 import { APIService } from '../authenticate/api.service';
+import { Observable } from 'rxjs/Observable';
 
 
 
@@ -39,6 +40,10 @@ export class AppStateService {
         return "";
     }
 
+    public getUserData() {
+        this.api.get(environment.getUrl('getProfileUrl')).map(res => res.json())
+    }
+
     public getUserProfile() {
         this.api.get(environment.getUrl('getProfileUrl')).map(res => res.json()).subscribe(
             response => {
@@ -56,4 +61,16 @@ export class AppStateService {
     }
 
     
+}
+
+@Injectable()
+export class UserResolver implements Resolve<User> {
+  constructor(private appState: AppStateService,) {}
+ 
+  resolve(
+    route: ActivatedRouteSnapshot,
+    state: RouterStateSnapshot
+  ): Observable<any>|Promise<any>|any {
+    return this.appState.getUserData()
+  }
 }

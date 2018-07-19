@@ -9,6 +9,7 @@ import { RegisterRoutes } from '../../pages/register/register.route';
 import { ProfileRoutes } from '../../pages/profile/profile.route';
 import { PurchaseHistoryRoutes } from '../../pages/purchase-history/purchase-history.route';
 import { CheckOutRoutes } from '../../pages/check-out/check-out.route';
+import { UserResolver } from '../../services/app-state.service';
 
 const routes: Routes = [
   { 
@@ -31,6 +32,7 @@ const routes: Routes = [
 @NgModule({
   imports: [RouterModule.forChild(routes)],
   exports: [RouterModule],
+  providers: [UserResolver]
 })
 export class MainLayoutRoutingModule { }
 

@@ -91,6 +91,7 @@ export class LoginComponent implements AfterViewInit {
           })
   }
 
+
   ngAfterViewInit() {
       let controller = this;
       this.viewChildren.first.nativeElement.focus();

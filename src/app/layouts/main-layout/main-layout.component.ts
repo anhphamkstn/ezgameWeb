@@ -38,6 +38,7 @@ export class MainLayoutComponent implements OnInit , AfterViewInit {
         this.isLogined = (this.authService.isValidAuthentication() && this.authService.loggedIn)
         if (this.isLogined) {
             this.appState.getUserProfile();
+            this.purchaseSerive.getCart();
         }
             
         this.searchCtrl = new FormControl();
@@ -53,15 +54,14 @@ export class MainLayoutComponent implements OnInit , AfterViewInit {
     }
 
     ngAfterViewInit() {
-        if (this.isLogined) {
-            this.purchaseSerive.getCart();
-        }
+    
     }
 
     getImageUrl(url) {
         var endPoint = environment.imageUrl
         return endPoint + url
     }
+
 
     public result;
 
@@ -78,6 +78,8 @@ export class MainLayoutComponent implements OnInit , AfterViewInit {
                 })
         return controller.result
     }
+
+    
 
     selectGame(event: MatAutocompleteSelectedEvent) {
         this.router.navigate(['/product/' + event.option.value]);

@@ -6,6 +6,8 @@ import { Cart } from '../models/cart.model';
 import { AppStateService } from './app-state.service';
 import { MessageService } from './message-service/message.service';
 import { APIService } from '../authenticate/api.service';
+import { Resolve, ActivatedRouteSnapshot, RouterStateSnapshot } from '@angular/router';
+import { Observable } from 'rxjs/Observable';
 
 
 export class Product {
@@ -32,6 +34,7 @@ export class PurchaseService {
 
     public cart: Cart;
     public haveCart = false
+    public orderID = 1;
 
     constructor(
         public api: APIService,
@@ -40,6 +43,7 @@ export class PurchaseService {
     ) {
 
     }
+
 
     public addProductToCart(product: Game) {
         if (this.cart) {
@@ -62,6 +66,23 @@ export class PurchaseService {
         else this.createShoppingCart([product])
     }
 
+    public getCartData() {
+        if (!this.appState.user_profile._id) {
+            this.api.get(environment.getUrl('getProfileUrl')).map(res => res.json()).subscribe(
+                response => {
+                    this.appState.user_profile = response;
+                    return this.api.get(environment.getUrl('cart') + "/" + this.appState.user_profile._id)
+                        .map(res => res.json())
+                },
+                error => {
+
+                },
+                () => {
+                }
+            );
+        }
+    }
+
     public getCart() {
         if (!this.appState.user_profile._id) {
             this.api.get(environment.getUrl('getProfileUrl')).map(res => res.json()).subscribe(
@@ -72,6 +93,7 @@ export class PurchaseService {
                         .subscribe(
                             response => {
                                 this.cart = response
+                                this.orderID = new Date(this.cart.created).getTime()
                             },
                             error => {
 
@@ -92,6 +114,7 @@ export class PurchaseService {
         var params = new CreateCartParam;
         params.products = products
         params.created = new Date().getTime()
+        this.orderID = params.created
         params.customer_id = this.appState.user_profile._id
         this.api.post(environment.getUrl('cart'), JSON.stringify(params))
             .map(res => res.json())
@@ -108,3 +131,16 @@ export class PurchaseService {
     }
 
 }
+
+@Injectable()
+export class CartResolver implements Resolve<Cart> {
+  constructor(private appState: PurchaseService) {}
+ 
+  resolve(
+    route: ActivatedRouteSnapshot,
+    state: RouterStateSnapshot
+  ): Observable<any>|Promise<any>|any {
+    return this.appState.getCartData()
+  }
+}
+
