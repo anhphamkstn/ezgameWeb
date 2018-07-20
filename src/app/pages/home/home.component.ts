@@ -96,6 +96,12 @@ export class HomeComponent implements OnInit {
     return object ? object[key] : null
   }
 
+  addProductToCartByID(id : string ) {
+    console.log(id)
+    var object = this.allGameInfo.find(t => t.product_id == id)
+    this.purchaseSerive.addProductToCart(object);
+  }
+
   getImageUrl(url) {
     var endPoint = environment.imageUrl
     return endPoint + url

@@ -56,9 +56,13 @@
                             </tr>
                             <tr>
                                 <td class="cursor">
-                                    <a  class="btn-login " *ngIf="purchaseSerive.cart" [routerLink]="['/check-out']">
-                                        <span  class="cursor">Giỏ hàng ({{purchaseSerive.cart.products.length}})</span>
-                                        <img  class="cursor" src="assets/default/images/cart.png">
+                                    <a class="btn-login " *ngIf="!purchaseSerive.cart" [routerLink]="['/']">
+                                        <span class="cursor">Giỏ hàng</span>
+                                        <img class="cursor" src="assets/default/images/cart.png">
+                                    </a>
+                                    <a class="btn-login " *ngIf="purchaseSerive.cart" [routerLink]="['/check-out']">
+                                        <span class="cursor">Giỏ hàng ({{purchaseSerive.cart.products.length}})</span>
+                                        <img class="cursor" src="assets/default/images/cart.png">
                                     </a>
                                 </td>
                             </tr>
