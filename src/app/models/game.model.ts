@@ -6,5 +6,5 @@ export class Game {
     public image?: string;
     public price?: number;
     public __v ?: string;
-    public qty ?: number;
+    public qty = 1
   }

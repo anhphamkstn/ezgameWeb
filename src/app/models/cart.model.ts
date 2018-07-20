@@ -7,6 +7,7 @@ export class Cart {
     public discount : Discount;
     public products : [Game];
     public __v : any;
+    public payment_method : any
 }
 
 export class Discount {

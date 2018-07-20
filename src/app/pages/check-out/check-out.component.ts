@@ -1,5 +1,6 @@
 import { Component, OnInit, AfterViewInit } from '@angular/core';
 import { PurchaseService } from '../../services/purchase.service';
+import { MessageService } from '../../services/message-service/message.service';
 
 @Component({
   selector: 'app-check-out',
@@ -10,15 +11,16 @@ export class CheckOutComponent implements OnInit, AfterViewInit {
 
   constructor(
     public purchaseSerive: PurchaseService,
+    public messageService: MessageService,
   ) { }
-
+  public confirm = false
   public banks = [
     {
       bank: "vcb",
       user: "Hà Thanh Thiện",
       number: "0021000419305",
       chiNhanh: "Hoàn Kiếm",
-      url: 'assets/default/images/bank/vcb.jpg'
+      url: 'assets/default/images/bank/vcb.png'
     }
     ,
     {
@@ -26,7 +28,7 @@ export class CheckOutComponent implements OnInit, AfterViewInit {
       user: "Hà Thanh Thiện",
       number: "190031905822229",
       chiNhanh: "Hoàn Kiếm",
-      url : 'assets/default/images/bank/techcombank.jpg'
+      url: 'assets/default/images/bank/techcombank.jpg'
     }
     ,
     {
@@ -34,7 +36,7 @@ export class CheckOutComponent implements OnInit, AfterViewInit {
       user: "Hà Thanh Thiện",
       number: "249612169",
       chiNhanh: "Hoàn Kiếm",
-      url : 'assets/default/images/bank/acb.jpg'
+      url: 'assets/default/images/bank/acb.jpg'
     },
     {
       bank: "Agribank",
@@ -48,14 +50,14 @@ export class CheckOutComponent implements OnInit, AfterViewInit {
       user: "Nghiêm Tuấn Anh",
       number: "105866765359",
       chiNhanh: "Sở giao dịch Hà Nội",
-      url : 'assets/default/images/bank/vietinbank.jpg'
+      url: 'assets/default/images/bank/vietinbank.jpg'
     },
     {
       bank: "bidv",
       user: "Nghiêm Tuấn Anh",
       number: "12210001896635",
       chiNhanh: "Sở giao dịch Hà Nội",
-      url : 'assets/default/images/bank/bidv.jpg'
+      url: 'assets/default/images/bank/bidv.jpg'
 
     }
   ]
@@ -72,17 +74,38 @@ export class CheckOutComponent implements OnInit, AfterViewInit {
 
   ngOnInit() {
     this.selectBank = this.defaultBank
-    
+
   }
 
   ngAfterViewInit() {
-    this.purchaseSerive.cart.products.forEach(e => {
-      this.total += e.price
-    });
+    var that = this
+    if (!this.purchaseSerive.cart) this.purchaseSerive.getCart()
+    setTimeout(() => {
+      that.purchaseSerive.cart.products.forEach(e => {
+        that.total += e.price
+      });
+    }, 1000);
+
   }
 
   selectBankByName(bank) {
     this.selectBank = bank
+  }
+
+  checkOut(methord) {
+    switch (methord) {
+      case 'baokim':
+        this.purchaseSerive.checkOutBaoKim();
+        break;
+      case 'bank':
+        if (this.confirm)
+          this.purchaseSerive.checkOutBank();
+        else this.messageService.showErrMessage('Bạn chưa xác nhận.');
+        break;
+
+      default:
+        break;
+    }
   }
 
 }

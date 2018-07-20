@@ -29,7 +29,15 @@ export const environment = {
 
       'search' : 'search',
 
-      'cart' : 'cart'
+      'cart' : 'cart',
+
+      'cartBaoKim' : 'cart-submit-baokim',
+
+      'cartBank' : 'cart-submit',
+
+      'change-password' :'change-password',
+
+      'account-order' : 'account-order'
 
   },
 

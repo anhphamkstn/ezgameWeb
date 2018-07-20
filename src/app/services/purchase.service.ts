@@ -6,8 +6,9 @@ import { Cart } from '../models/cart.model';
 import { AppStateService } from './app-state.service';
 import { MessageService } from './message-service/message.service';
 import { APIService } from '../authenticate/api.service';
-import { Resolve, ActivatedRouteSnapshot, RouterStateSnapshot } from '@angular/router';
+import { Resolve, ActivatedRouteSnapshot, RouterStateSnapshot, Router } from '@angular/router';
 import { Observable } from 'rxjs/Observable';
+import { Location } from '@angular/common';
 
 
 export class Product {
@@ -39,7 +40,9 @@ export class PurchaseService {
     constructor(
         public api: APIService,
         public messageService: MessageService,
-        public appState: AppStateService
+        public appState: AppStateService,
+        public router: Router,
+        public location: Location
     ) {
 
     }
@@ -47,18 +50,19 @@ export class PurchaseService {
 
     public addProductToCart(product: Game) {
         if (this.cart) {
+            product.qty = 1;
             this.cart.products.push(product)
             this.api.put(environment.getUrl('cart') + "/" + this.cart._id, JSON.stringify(this.cart))
                 .map(res => res)
                 .subscribe(
-                    response => {
-                        this.messageService.showSuccessMessage("Cập nhật giỏ hàng thành công.")
-                        this.getCart()
-                    },
-                    error => {
+                response => {
+                    this.messageService.showSuccessMessage("Cập nhật giỏ hàng thành công.")
+                    this.getCart()
+                },
+                error => {
 
-                    },
-                    () => { }
+                },
+                () => { }
                 );
 
         }
@@ -72,7 +76,17 @@ export class PurchaseService {
                 response => {
                     this.appState.user_profile = response;
                     return this.api.get(environment.getUrl('cart') + "/" + this.appState.user_profile._id)
-                        .map(res => res.json())
+                        .map(res => res.json()).subscribe(
+                        response => {
+                            this.cart = response
+                            if (this.cart)
+                                this.orderID = new Date(this.cart.created).getTime()
+                        },
+                        error => {
+
+                        },
+                        () => { }
+                        );
                 },
                 error => {
 
@@ -83,6 +97,43 @@ export class PurchaseService {
         }
     }
 
+    public checkOutBank() {
+        var controller = this
+        this.cart.payment_method = 2
+        this.api.post(environment.getUrl('cartBank') + "/" + this.cart._id, JSON.stringify(this.cart))
+            .map(res => res)
+            .subscribe(
+            response => {
+                controller.messageService.showSuccessMessage("Thanh toán thành công")
+                controller.router.navigate(['#'])
+            },
+            error => {
+
+            },
+            () => { }
+            );
+        controller.messageService.showSuccessMessage("Thanh toán thành công")
+        controller.router.navigate(['#'])
+    }
+
+
+
+    public checkOutBaoKim() {
+        this.cart.payment_method = 2
+        this.api.post(environment.getUrl('cartBaoKim') + "/" + this.cart._id, JSON.stringify(this.cart))
+            .map(res => res.json())
+            .subscribe(
+            response => {
+                window.location.href = response.url
+            },
+            error => {
+
+            },
+            () => { }
+            );
+
+    }
+
     public getCart() {
         if (!this.appState.user_profile._id) {
             this.api.get(environment.getUrl('getProfileUrl')).map(res => res.json()).subscribe(
@@ -91,14 +142,15 @@ export class PurchaseService {
                     this.api.get(environment.getUrl('cart') + "/" + this.appState.user_profile._id)
                         .map(res => res.json())
                         .subscribe(
-                            response => {
-                                this.cart = response
+                        response => {
+                            this.cart = response
+                            if (this.cart)
                                 this.orderID = new Date(this.cart.created).getTime()
-                            },
-                            error => {
+                        },
+                        error => {
 
-                            },
-                            () => { }
+                        },
+                        () => { }
                         );
                 },
                 error => {
@@ -119,14 +171,14 @@ export class PurchaseService {
         this.api.post(environment.getUrl('cart'), JSON.stringify(params))
             .map(res => res.json())
             .subscribe(
-                response => {
-                    this.messageService.showSuccessMessage("Tạo đơn hàng thành công.")
-                    this.cart = response
-                },
-                error => {
+            response => {
+                this.messageService.showSuccessMessage("Tạo đơn hàng thành công.")
+                this.cart = response
+            },
+            error => {
 
-                },
-                () => { }
+            },
+            () => { }
             );
     }
 
@@ -134,13 +186,13 @@ export class PurchaseService {
 
 @Injectable()
 export class CartResolver implements Resolve<Cart> {
-  constructor(private appState: PurchaseService) {}
- 
-  resolve(
-    route: ActivatedRouteSnapshot,
-    state: RouterStateSnapshot
-  ): Observable<any>|Promise<any>|any {
-    return this.appState.getCartData()
-  }
+    constructor(private appState: PurchaseService) { }
+
+    resolve(
+        route: ActivatedRouteSnapshot,
+        state: RouterStateSnapshot
+    ): Observable<any> | Promise<any> | any {
+        return this.appState.getCartData()
+    }
 }
 

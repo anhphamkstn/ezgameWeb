@@ -1,3 +1,26 @@
-<p>
-  purchase-history works!
-</p>
+<div class="ez-content">
+  <div class="container">
+    <div class="profile">
+      <div class="row table-responsive">
+        <table *ngIf="orders.length > 0" class="table table-striped">
+          <thead>
+            <tr>
+              <th>Ngày</th>
+              <th>Order</th>
+              <th>Trạng thái</th>
+              <th>Tổng tiền</th>
+            </tr>
+          </thead>
+          <tfoot>
+            <tr *ngFor="let order of orders">
+              <td>{{order.created}}</td>
+              <td>{{getOrderID(order)  }}</td>
+              <td>{{order.status | cartStatusPipe }}</td>
+              <td>{{getTotal(order) | money }} VNĐ</td>
+            </tr>
+          </tfoot>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>

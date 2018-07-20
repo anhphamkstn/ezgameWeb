@@ -5,7 +5,7 @@
         <div class="col-margin check-out-bg1">
           <h2 class="title">Chọn hình thức thanh toán</h2>
           <div class="check-out-content">
-            <div class="card check-out-row">
+            <!-- <div class="card check-out-row">
               <div class="radio">
                 <label>
                   <input type="radio" name="check-out" checked="checked">Qua thẻ cào							
@@ -19,7 +19,7 @@
                 <div class="col-xs-3"><span class="text">Mã thẻ:</span></div>
                 <div class="col-xs-9"><input type="text" class="form-control"></div>
               </div>
-            </div>
+            </div> -->
             <div class="bank check-out-row">
               <div class="radio">
                 <label>
@@ -38,10 +38,10 @@
                     <span class="bank-text">Số tài khoản:</span>
                     <span class="bank-text">{{selectBank.number}}</span>
                   </div>
-                  <!-- <div class="col-sm-6">
+                  <div class="col-sm-6">
                     <span class="bank-text">Số thẻ:</span>
-                    <span class="bank-text">{{selectBank.user}}</span>
-                  </div> -->
+                    <span class="bank-text"></span>
+                  </div>
                 </div>
                 <div class="row">
                   <div class="col-sm-6">
@@ -62,7 +62,7 @@
                     <span class="note-text">Điền mã sau vào nội dung chuyển khoản</span></p>
                     <div class="checkbox">
                       <label>
-                        <input type="checkbox" value="">
+                        <input type="checkbox" [(ngModel)]="confirm">
                         Tôi đã điền mã sau vào nội dung chuyển khoản
                       </label>
                     </div>
@@ -72,7 +72,7 @@
                   </div>
                 </div>
                 
-                <button type="button" class="btn btn-danger">HOÀN TẤT ĐẶT HÀNG</button>
+                <button type="button" (click)="checkOut('bank')" class="btn btn-danger">HOÀN TẤT ĐẶT HÀNG</button>
               </div>
             </div>
             <div class="card check-out-row">
@@ -81,13 +81,13 @@
                   <input type="radio" name="check-out" checked="checked">Giao dịch trực tiếp tại các chi nhánh của EZGame store			
                 </label>
               </div>
-              <a class="ez-text" href="#">(Click vào đây để xem bộ hệ thống EZGame trên toàn quốc)</a>
+              <a class="ez-text"  href="https://www.facebook.com/ezgamevn">(Click vào đây để xem bộ hệ thống EZGame trên toàn quốc)</a>
             </div>
             <div class="card check-out-row">
-              <a class="ez-text bank" href="#">Qua cổng thanh toán BaoKim.vn</a>
+              <a class="ez-text bank" (click)="checkOut('baokim')" >Qua cổng thanh toán BaoKim.vn</a>
             </div>
             <div class="card check-out-row">
-              <a class="ez-text bank" href="#">Thanh toán bằng các hình thức khác</a>
+              <a class="ez-text bank" href="m.me/ezgamevn">Thanh toán bằng các hình thức khác</a>
               <p>(Chuyển khoản BanThe247, Paypal, WMZ.... )</p>
             </div>
           </div>
@@ -95,9 +95,9 @@
         </div>
         
       </div>
-      <div class="col-md-4">
+      <div class="col-md-4"> 
         <div class="col-margin check-out-bg2 ">
-          <div class="order-info">
+          <div *ngIf="purchaseSerive.cart" class="order-info">
             <h2 class="title text-center">đơn hàng: {{purchaseSerive.cart._id}}</h2>	
             <div class="table-responsive">
               <table class="table table-striped">

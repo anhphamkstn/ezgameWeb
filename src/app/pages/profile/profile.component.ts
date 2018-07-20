@@ -168,6 +168,21 @@ export class ProfileComponent implements OnInit, AfterViewInit {
   }
 
   changePassword() {
+    if (this.canChanged) {
+      var param = {
+        "new_password": this.newPass,
+        "old_password": this.oldPass
+      }
+      this.api.put(environment.getUrl('change-password'), param).map(res => res.json()).subscribe(
+          response => {
+              this.messageService.showSuccessMessage('Password changed successfully!');
+          },
+          error => {
+              this.incorrectPass = true;
+              this.messageService.showErrorMessage('myMessage', error);
+          }
+      )
+  }
     
   }
 

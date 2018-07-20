@@ -5,6 +5,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import * as Material from '@angular/material';
+import { CartStatusPipe } from '../pipes/cart-status.pipe';
 
 @NgModule({
     exports: [
@@ -51,6 +52,7 @@ import * as Material from '@angular/material';
     exports: [
         LoadingComponent,
         MoneyPipe,
+        CartStatusPipe,
         FormsModule,
         ReactiveFormsModule,
         RouterModule,
@@ -59,6 +61,7 @@ import * as Material from '@angular/material';
     ],
     declarations: [
         LoadingComponent,
+        CartStatusPipe,
         MoneyPipe
     ],
     providers: [],
