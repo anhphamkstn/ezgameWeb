@@ -2,6 +2,7 @@
   <div class="container">
     <div class="profile">
       <div class="row table-responsive">
+        <h2>Lịch sử mua hàng</h2>
         <table *ngIf="orders.length > 0" class="table table-striped">
           <thead>
             <tr>
@@ -20,6 +21,7 @@
             </tr>
           </tfoot>
         </table>
+        <a class="ez-text" [routerLink]="['']">Tiếp tục mua hàng</a>
       </div>
     </div>
   </div>

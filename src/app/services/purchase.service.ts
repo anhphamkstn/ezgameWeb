@@ -47,12 +47,31 @@ export class PurchaseService {
 
     }
 
+    public deleteCart() {
+        this.api.delete(environment.getUrl('cart') + "/" + this.cart._id)
+                .map(res => res)
+                .subscribe(
+                response => {
+                    this.messageService.showSuccessMessage("Xóa giỏ hàng thành công.")
+                    delete this.cart
+                },
+                error => {
 
-    public addProductToCart(product: Game) {
-        if (this.cart) {
-            product.qty = 1;
-            this.cart.products.push(product)
-            this.api.put(environment.getUrl('cart') + "/" + this.cart._id, JSON.stringify(this.cart))
+                },
+                () => { }
+                );
+    }
+
+    public getCountCart() {
+        var sum =0
+        if (this.cart) this.cart.products.forEach(e => {
+            sum += e.qty
+        }); 
+        return sum
+    }
+
+    public updateCart() {
+        this.api.put(environment.getUrl('cart') + "/" + this.cart._id, JSON.stringify(this.cart))
                 .map(res => res)
                 .subscribe(
                 response => {
@@ -64,6 +83,19 @@ export class PurchaseService {
                 },
                 () => { }
                 );
+    }
+
+
+    public addProductToCart(product: Game) {
+        if (!product) {
+            this.messageService.showErrMessage("Game này không có sẵn")
+            return
+        }
+        product.qty = 1;
+        if (this.cart) {
+          
+            this.cart.products.push(product)
+            this.updateCart();
 
         }
 

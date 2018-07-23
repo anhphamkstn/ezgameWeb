@@ -1,6 +1,8 @@
 import { Component, OnInit, AfterViewInit } from '@angular/core';
 import { PurchaseService } from '../../services/purchase.service';
 import { MessageService } from '../../services/message-service/message.service';
+import { Game } from '../../models/game.model';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-check-out',
@@ -12,6 +14,7 @@ export class CheckOutComponent implements OnInit, AfterViewInit {
   constructor(
     public purchaseSerive: PurchaseService,
     public messageService: MessageService,
+    public router: Router
   ) { }
   public confirm = false
   public banks = [
@@ -62,7 +65,7 @@ export class CheckOutComponent implements OnInit, AfterViewInit {
     }
   ]
 
-  public total = 0;
+
   public selectBank: any;
 
   public defaultBank = {
@@ -80,12 +83,48 @@ export class CheckOutComponent implements OnInit, AfterViewInit {
   ngAfterViewInit() {
     var that = this
     if (!this.purchaseSerive.cart) this.purchaseSerive.getCart()
-    setTimeout(() => {
-      that.purchaseSerive.cart.products.forEach(e => {
-        that.total += e.price
-      });
-    }, 1000);
+  }
 
+  changeQty(game: Game, methord) {
+    if (methord == 'plus')
+      game.qty++
+    else {
+      if (game.qty == 1) return
+      game.qty--
+    }
+    var index = this.purchaseSerive.cart.products.findIndex(e => {
+      return e.id == game.id
+    })
+
+    if (index >= 0) this.purchaseSerive.cart.products[index] = game
+    this.purchaseSerive.updateCart()
+
+  }
+
+  deleteCart() {
+    this.purchaseSerive.deleteCart()
+    this.router.navigate([''])
+  }
+
+  deleteGame(game) {
+    var index = this.purchaseSerive.cart.products.findIndex(e => {
+      return e.id == game.id
+    })
+    if (this.purchaseSerive.cart.products.length > 1) {
+      delete this.purchaseSerive.cart.products[index]
+    }
+    else
+      this.deleteCart()
+  }
+
+  sumPrice() {
+    var that = this;
+    var total = 0
+    if (that.purchaseSerive.cart)
+      that.purchaseSerive.cart.products.forEach(e => {
+        total += e.price * e.qty
+      });
+    return total
   }
 
   selectBankByName(bank) {

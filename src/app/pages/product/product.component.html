@@ -33,7 +33,7 @@
                 <span class="text">GIÁ TRƯỚC ĐÂY:</span>
                 <span class="price">340.000 VNĐ</span>
               </div> -->
-            <button type="button" class="btn btn-add-cart">THÊM VÀO GIỎ HÀNG</button>
+            <button type="button" (click)="addProductToCart($event,gameInfo)" class="btn btn-add-cart">THÊM VÀO GIỎ HÀNG</button>
             <div class="product-discount">
               <p>EZGame đang có chương trình</p>
               <p>Giảm giá 2% khi mua 2 sản phẩm trở lên.</p>
@@ -62,7 +62,7 @@
                     </p>
                     <p class="price-new">{{game.price | money}} VNĐ</p>
                   </div>
-                  <div class="add-cart">
+                  <div (click)="addProductToCart($event,game)" class="add-cart">
                     <i class="fa fa-shopping-cart" aria-hidden="true"></i>
                   </div>
                 </div>

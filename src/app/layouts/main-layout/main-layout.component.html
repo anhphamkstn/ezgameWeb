@@ -61,7 +61,7 @@
                                         <img class="cursor" src="assets/default/images/cart.png">
                                     </a>
                                     <a class="btn-login " *ngIf="purchaseSerive.cart" [routerLink]="['/check-out']">
-                                        <span class="cursor">Giỏ hàng ({{purchaseSerive.cart.products.length}})</span>
+                                        <span class="cursor">Giỏ hàng ({{purchaseSerive.getCountCart()}})</span>
                                         <img class="cursor" src="assets/default/images/cart.png">
                                     </a>
                                 </td>
@@ -86,19 +86,19 @@
                 <div id="ez-navbar" class="collapse">
                     <ul class="ez-navbar-nav">
                         <li class="active">
-                            <a href="#">GAME</a>
+                            <a [routerLink]="['/']">GAME</a>
                         </li>
                         <li>
-                            <a href="#">THUÊ GAME</a>
+                            <a [routerLink]="['/']">THUÊ GAME</a>
                         </li>
                         <li>
-                            <a href="#">WALLET CODES</a>
+                            <a [routerLink]="['/']">WALLET CODES</a>
                         </li>
                         <li>
-                            <a href="#">PHỤ KIỆN</a>
+                            <a [routerLink]="['/']">PHỤ KIỆN</a>
                         </li>
                         <li>
-                            <a href="#">ITEM GAME</a>
+                            <a [routerLink]="['/']">ITEM GAME</a>
                         </li>
                         <li>
                             <span>TẶNG NGAY 5000 VNĐ
@@ -126,16 +126,16 @@
             <div class="col-md-4">
                 <div class="info">
                     <p class="title">
-                        <a href="#">Thông tin về EZGame Store</a>
+                        <a [routerLink]="['/']">Thông tin về EZGame Store</a>
                     </p>
                     <p>
-                        <a href="#">Trở thành đối tác</a>
+                        <a href="m.me/ezgamevn">Trở thành đối tác</a>
                     </p>
                     <p>
-                        <a href="#">Hệ thông các đối tác EZGame</a>
+                        <a [routerLink]="['/']">Hệ thông các đối tác EZGame</a>
                     </p>
                     <p>
-                        <a href="#">Facebook Page</a>
+                        <a href="https://www.facebook.com/ezgamevn">Facebook Page</a>
                     </p>
                 </div>
             </div>

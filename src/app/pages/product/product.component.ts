@@ -6,6 +6,7 @@ import { environment } from '../../../environments/environment';
 import { Game } from '../../models/game.model';
 import { SharedService } from '../../services/shared.service';
 import { APIService } from '../../authenticate/api.service';
+import { PurchaseService } from '../../services/purchase.service';
 
 @Component({
   selector: 'app-product',
@@ -24,6 +25,7 @@ export class ProductComponent implements OnInit {
     public router: Router,
     public route: ActivatedRoute,
     public messageService: MessageService,
+    public purchaseSerive : PurchaseService,
     public sharedService: SharedService
 
   ) {
@@ -39,6 +41,11 @@ export class ProductComponent implements OnInit {
     this.getProductInfo()
   }
 
+  addProductToCart(event,game) {
+    event.preventDefault();
+    this.purchaseSerive.addProductToCart(game);
+    
+  }
 
 
   getProductInfo() {

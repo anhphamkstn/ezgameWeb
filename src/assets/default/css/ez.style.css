@@ -132,7 +132,7 @@ a:focus{
 }
 
 .container{
-	max-width: 960px;
+	/* max-width: 960px; */
 }
 .bg-overlay-wrap{
 	position: relative;
