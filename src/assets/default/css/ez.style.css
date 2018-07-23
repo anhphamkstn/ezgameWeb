@@ -540,6 +540,7 @@ a:focus{
 /*-- ..product-sell--*/
 .product-sell{
 	background: #fff;
+	text-align: center
 }
 .product-sell .time-left{
 	margin: 0;
