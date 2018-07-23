@@ -70,7 +70,7 @@ export class PurchaseService {
         return sum
     }
 
-    public updateCart() {
+    public updateCart(newCart?) {
         this.api.put(environment.getUrl('cart') + "/" + this.cart._id, JSON.stringify(this.cart))
                 .map(res => res)
                 .subscribe(

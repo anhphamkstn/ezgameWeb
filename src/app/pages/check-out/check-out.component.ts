@@ -111,7 +111,8 @@ export class CheckOutComponent implements OnInit, AfterViewInit {
       return e.id == game.id
     })
     if (this.purchaseSerive.cart.products.length > 1) {
-      delete this.purchaseSerive.cart.products[index]
+      this.purchaseSerive.cart.products.splice(index, 1);
+      this.purchaseSerive.updateCart()
     }
     else
       this.deleteCart()
