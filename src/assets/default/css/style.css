@@ -1,6 +1,13 @@
 .container{
 	padding:5px;
 }
+
+.cursor {
+	cursor: pointer;
+}
+
+
+
 .slideshow {
         position:relative; /*Make the slideshow container  position:relative and make the sub elements absolute to position the sub element absolute to the container*/
         height:90px; /*The slide show height*/
@@ -262,6 +269,3 @@ padding:4px 0px 0px 0px;
 border-radius:0px 0px 4px 4px;
 }
 
-.cursor {
-    cursor: pointer
-}

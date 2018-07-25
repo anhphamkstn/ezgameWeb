@@ -7,19 +7,17 @@
                     <span class="text-primary" style="color: beige">{{errorMessage}}</span>
                 </div>
                 <div class="form-group has-feedback">
-                    <input id="email" type="text" #input class="form-control" i18n-placeholder placeholder="Email/Username" name="username" [(ngModel)]="model.email"
+                    <input id="email" type="text" #input class="form-control" i18n-placeholder placeholder="Email/Tên đăng nhập" name="username" [(ngModel)]="model.email"
                         required>
-                    <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
                 </div>
                 <div class="form-group has-feedback">
                     <input id="password" type="password" class="form-control" i18n-placeholder placeholder="Password" name="password" [(ngModel)]="model.password"
                         autocomplete="off" style="-webkit-text-security: disc;" required>
-                    <span class="glyphicon glyphicon-lock form-control-feedback"></span>
                 </div>
                 <div class="form-group">
                     <br>
                     <span style="color:#fff" i18n>Bạn chưa có tài khoản ? </span>
-                    <a class="cursor" style="text-decoration: underline; color: beige" (click)="onSignUpClick($event)" i18n>Tạo mới</a>
+                    <a class="cursor" style="text-decoration: underline; color: beige" (click)="onSignUpClick($event)" i18n>Đăng ký</a>
                 </div>
                 <div class="overlay text-center logging" style="display:none;">
                     <i class="fa">

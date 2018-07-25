@@ -71,11 +71,11 @@ export class RegisterComponent implements AfterViewInit, OnInit {
 
 
     if (jQuery("#signup-password").val().length < 8) {
-      jQuery("#signUpMessage").html("Password must have at least 8 characters");
+      jQuery("#signUpMessage").html("Mật khẩu tối thiểu 8 ký tự");
       return;
     }
     if (jQuery("#signup-password").val() != jQuery("#signup-retype-password").val()) {
-      jQuery("#signUpMessage").html("Passwords not match");
+      jQuery("#signUpMessage").html("Mật khẩu nhập lại không khớp");
       return;
     }
 
@@ -91,7 +91,7 @@ export class RegisterComponent implements AfterViewInit, OnInit {
     param.phone = jQuery("#phone-1").val();
     param.password = jQuery("#signup-password").val();
 
-    this.stepMessage = "Creating your account...";
+    this.stepMessage = "Đợi chút nhé ...";
 
     var controller = this
     setTimeout(function () {
@@ -101,19 +101,19 @@ export class RegisterComponent implements AfterViewInit, OnInit {
         .subscribe(response => {
           controller.isLoading = false
           controller.newUserCreated = response
-          controller.stepMessage = "Account " + response.email + " successfully created!";
+          controller.stepMessage = "Tài khoản " + response.email + " tạo thành công !";
           controller.nextStep();
         },
           error => {
             controller.isLoading = false
             console.log(error);
-            if (error.status == 500) controller.stepMessage = "Some error happend. Please try again later!"
+            if (error.status == 500) controller.stepMessage = "Có lỗi xảy ra. Liên hệ admin để được hỗ trợ."
             else {
               if (error.json().message) {
                 controller.stepMessage = error.json().result[0];
               }
               else {
-                controller.stepMessage = "Some error happend. Please try again later!"
+                controller.stepMessage = "Có lỗi xảy ra. Liên hệ admin để được hỗ trợ."
               }
             }
           },
@@ -166,7 +166,7 @@ export class RegisterComponent implements AfterViewInit, OnInit {
         error => {
           controller.isLoading = false
           console.log(error);
-          if (error.status == 500) controller.stepMessage = "Some error happend. Please try again later!"
+          if (error.status == 500) controller.stepMessage = "Có lỗi xảy ra. Liên hệ admin để được hỗ trợ."
         },
         () => {
           controller.isLoading = false

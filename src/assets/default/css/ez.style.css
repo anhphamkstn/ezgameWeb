@@ -1280,6 +1280,8 @@ a:focus{
 	font-size: 12px;
 }
 
+
+
 .hostory-order .btn{
 	width: 100%;
 	background: #ee4c4c;
@@ -1287,3 +1289,7 @@ a:focus{
 	margin-top: 20px;
 }
 /*-----/.check-out-----*/
+
+.cursor {
+	cursor: pointer;
+}
